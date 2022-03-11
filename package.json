@@ -1,0 +1,21 @@
+{
+  "name": "nhl-api",
+  "version": "0.1.0",
+  "description": "A TypeScript client for the NHL API.",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "files": ["dist"],
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/mattellig/nhl-api.git",
+  "author": "Matt Ellig",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -cw"
+  },
+  "devDependencies": {
+    "rollup": "^2.70.0",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "typescript": "^4.6.2"
+  }
+}
