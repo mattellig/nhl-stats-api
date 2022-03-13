@@ -3,6 +3,7 @@ import { NHLTeam } from './teams.types'
 
 async function getAll(): Promise<NHLTeam[]> {
     const result = await client.get<NHLTeam[]>('teams')
+
     return result.teams
 }
 

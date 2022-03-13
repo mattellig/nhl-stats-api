@@ -10,9 +10,9 @@ describe('teams', () => {
 
     describe('.getById', () => {
         it('should resolve to a single NHLTeam', () => {
-            const mockTeam = mockTeamData[0]
+            const team = mockTeamData[0]
 
-            expect(teams.getById(mockTeam.id)).resolves.toEqual(mockTeam)
+            expect(teams.getById(team.id)).resolves.toEqual(team)
         })
     })
 })

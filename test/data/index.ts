@@ -1,1 +1,2 @@
-export { teamsDb, mockTeamData } from './teams.data'
+export * from './franchises.data'
+export * from './teams.data'
