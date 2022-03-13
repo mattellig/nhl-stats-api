@@ -1,12 +1,12 @@
-# nhl-api
+# nhl-stats-api
 
-A TypeScript client for the NHL API.
+A Promise-based wrapper for the NHL stats API.
 
 ## Installation
 
 ```
-$ git clone https://github.com/mattellig/nhl-api.git
-$ cd nhl-api
+$ git clone https://github.com/mattellig/nhl-stats-api.git
+$ cd nhl-stats-api
 $ yarn
 ```
 

@@ -2,7 +2,12 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "./dist",
+    "esModuleInterop": true,
+    "lib": [
+      "ESNext"
+    ],
     "module": "ES6",
+    "moduleResolution": "Node",
     "noImplicitAny": true,
     "outDir": "./dist",
     "target": "ES5"
@@ -11,6 +16,8 @@
     "./src/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "./src/**/*.test.ts",
+    "./test/**"
   ]
 }
