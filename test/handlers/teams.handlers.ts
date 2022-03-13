@@ -26,4 +26,16 @@ export const teamsHandlers = [
             return res(ctx.status(400), ctx.json({ message: err.message }))
         }
     }),
+
+    // GET /teams/{id}/roster
+    rest.get(`${url}/:id/roster`, (req, res, ctx) => {
+        const { id } = req.params;
+
+        try {
+            const data = teamsDb.readRoster(Number(id))
+            return res(ctx.status(200), ctx.json({ roster: data }))
+        } catch (err) {
+            return res(ctx.status(400), ctx.json({ message: err.message }))
+        }
+    }),
 ]

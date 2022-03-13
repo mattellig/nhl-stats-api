@@ -1,11 +1,11 @@
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import resolve from '@rollup/plugin-node-resolve'
-import typescript from 'rollup-plugin-typescript2'
+import typescript from '@rollup/plugin-typescript'
 import pkg from './package.json'
 
 export default {
-    input: './src/index.ts',
+    input: 'src/index.ts',
     output: [
         {
             file: pkg.main,
@@ -20,11 +20,12 @@ export default {
         ...Object.keys(pkg.peerDependencies || {}),
     ],
     watch: {
-        include: './src/**',
+        include: 'src/**',
     },
     plugins: [
         json(),
         typescript({
+            tsconfig: './tsconfig.json',
             typescript: require('typescript'),
         }),
         commonjs(),

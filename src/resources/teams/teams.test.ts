@@ -15,4 +15,12 @@ describe('teams', () => {
             expect(teams.getById(team.id)).resolves.toEqual(team)
         })
     })
+
+    describe('.getRoster', () => {
+        it('should resolve to an array of NHLRosterPlayers', () => {
+            const team = mockTeamData[0]
+
+            expect(teams.getRoster(team.id)).resolves.toEqual(team.roster)
+        })
+    })
 })

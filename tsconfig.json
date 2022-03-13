@@ -1,23 +1,24 @@
 {
-  "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "./dist",
-    "esModuleInterop": true,
-    "lib": [
-      "ESNext"
+    "compilerOptions": {
+        "declaration": true,
+        "declarationDir": ".",
+        "esModuleInterop": true,
+        "lib": [
+            "ESNext"
+        ],
+        "module": "ES6",
+        "moduleResolution": "Node",
+        "noImplicitAny": true,
+        "outDir": "dist",
+        "target": "ES5"
+    },
+    "include": [
+        "src/**/*"
     ],
-    "module": "ES6",
-    "moduleResolution": "Node",
-    "noImplicitAny": true,
-    "outDir": "./dist",
-    "target": "ES5"
-  },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "./src/**/*.test.ts",
-    "./test/**"
-  ]
+    "exclude": [
+        "node_modules",
+        "dist",
+        "src/**/*.test.ts",
+        "test"
+    ]
 }

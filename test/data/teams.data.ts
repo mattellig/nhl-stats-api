@@ -1,4 +1,4 @@
-import { NHLTeam } from '../../src'
+import { NHLRosterPlayer, NHLTeam } from '../../src'
 
 export const mockTeamData: NHLTeam[] = [
     {
@@ -36,6 +36,50 @@ export const mockTeamData: NHLTeam[] = [
             teamName: 'Maple Leafs',
             link: '/api/v1/franchises/5',
         },
+        roster: [
+            {
+                person: {
+                    id: 8475789,
+                    fullName: 'Jack Campbell',
+                    link: '/api/v1/people/8475789'
+                },
+                jerseyNumber: '36',
+                position: {
+                    code: 'G',
+                    name: 'Goalie',
+                    type: 'Goalie',
+                    abbreviation: 'G',
+                },
+            },
+            {
+                person: {
+                    id: 8475166,
+                    fullName: 'John Tavares',
+                    link: '/api/v1/people/8475166'
+                },
+                jerseyNumber: '91',
+                position: {
+                    code: 'C',
+                    name: 'Center',
+                    type: 'Forward',
+                    abbreviation: 'C',
+                },
+            },
+            {
+                person: {
+                    id: 8478483,
+                    fullName: 'Mitchell Marner',
+                    link: '/api/v1/people/8478483'
+                },
+                jerseyNumber: '16',
+                position: {
+                    code: 'R',
+                    name: 'Right Wing',
+                    type: 'Forward',
+                    abbreviation: 'RW',
+                },
+            },
+        ],
         shortName: 'Toronto',
         officialSiteUrl: 'http://www.mapleleafs.com/',
         franchiseId: 5,
@@ -133,4 +177,12 @@ function readById(id: number): NHLTeam[] {
     return [mockTeamData.find((t) => t.id === id)]
 }
 
-export const teamsDb = { read, readById }
+function readRoster(id: number): NHLRosterPlayer[] {
+    return mockTeamData.find((t) => t.id === id).roster;
+}
+
+export const teamsDb = {
+    read,
+    readById,
+    readRoster,
+}
