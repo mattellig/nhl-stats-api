@@ -1,5 +1,5 @@
 import { client } from '../../client/client'
-import { NHLFranchise } from './franchises.types';
+import { NHLFranchise } from '../../types'
 
 async function getAll(): Promise<NHLFranchise[]> {
     return (

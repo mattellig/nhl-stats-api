@@ -1,25 +1,14 @@
-import { NHLConference } from '../conferences/conferences.types'
-import { NHLDivision } from '../divisions/divisions.types'
-import { NHLFranchise } from '../franchises/franchises.types'
-import { NHLPlayer, NHLPosition } from '../players/players.types'
-import { NHLVenue } from '../venues/venues.types'
+import { NHLConference } from './conferences'
+import { NHLDivision } from './divisions'
+import { NHLFranchise } from './franchises'
+import { NHLPlayer, NHLPosition } from './players'
+import { NHLSocialMedia } from './shared'
+import { NHLVenue } from './venues'
 
 export interface NHLRosterPlayer {
     person: NHLPlayer
     jerseyNumber: string
     position: NHLPosition
-}
-
-export interface NHLSocialMedia {
-    twitter?: string[]
-    facebook?: string[]
-    instagram?: string[]
-    vine?: string[]
-    periscope?: string[]
-    youtube?: string[]
-    pinterest?: string[]
-    googleplus?: string[]
-    snapchat?: string[]
 }
 
 export interface NHLTeam {

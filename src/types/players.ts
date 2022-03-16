@@ -1,4 +1,5 @@
-import { NHLSocialMedia, NHLTeam } from '../types'
+import { NHLSocialMedia } from './shared';
+import { NHLTeam } from './teams';
 
 export type NHLPosition =
     | { code: 'G'; name: 'Goalie'; type: 'Goalie'; abbreviation: 'G' }

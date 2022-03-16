@@ -1,4 +1,4 @@
-import { NHLConference } from '../conferences/conferences.types'
+import { NHLConference } from './conferences'
 
 export interface NHLDivision {
     // some divisions have no id or names (on teams, for example)

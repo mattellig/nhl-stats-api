@@ -1,5 +1,5 @@
 import { client } from '../../client/client'
-import { NHLRosterPlayer, NHLTeam } from './teams.types'
+import { NHLRosterPlayer, NHLTeam } from '../../types'
 
 export interface TeamsConfig {
     expandConference?: boolean
