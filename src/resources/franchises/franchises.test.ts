@@ -1,5 +1,5 @@
 import { mockFranchiseData } from '../../../test/data'
-import { franchises } from './franchises.resource'
+import { franchises } from './franchises'
 
 describe('franchises', () => {
     describe('.getAll', () => {

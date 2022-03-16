@@ -1,5 +1,5 @@
 import { mockTeamData } from '../../../test/data'
-import { teams } from './teams.resource'
+import { teams } from './teams'
 
 describe('teams', () => {
     describe('.getAll', () => {
