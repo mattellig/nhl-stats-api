@@ -1,4 +1,3 @@
-import { config } from 'process'
 import { client } from '../../client/client'
 import { NHLRosterPlayer, NHLTeam, NHLTeamStats } from '../../types'
 
