@@ -23,4 +23,12 @@ describe('teams', () => {
             expect(teams.getRoster(team.id)).resolves.toEqual(team.roster)
         })
     })
+
+    describe('.getStats', () => {
+        it('should resolve to an NHLTeamStats', () => {
+            const team = mockTeamData[0]
+
+            expect(teams.getStats(team.id)).resolves.toEqual(team.teamStats)
+        })
+    })
 })

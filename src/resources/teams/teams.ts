@@ -1,5 +1,6 @@
+import { config } from 'process'
 import { client } from '../../client/client'
-import { NHLRosterPlayer, NHLTeam } from '../../types'
+import { NHLRosterPlayer, NHLTeam, NHLTeamStats } from '../../types'
 
 export interface TeamsConfig {
     expandConference?: boolean
@@ -14,6 +15,11 @@ export interface TeamsRosterConfig {
     expandPlayerInfo?: boolean
     includePlayerNames?: boolean
     includePlayerSocials?: boolean
+    season?: string
+}
+
+export interface TeamStatsConfig {
+    expandTeam?: boolean
     season?: string
 }
 
@@ -59,6 +65,22 @@ async function getRoster(id: number, config: TeamsRosterConfig = {}): Promise<NH
     ).roster
 }
 
+async function getStats(id: number, config: TeamStatsConfig = {}): Promise<NHLTeamStats[]> {
+    const params = new URLSearchParams()
+
+    if (config.expandTeam) {
+        params.set('expand', 'stats.team')
+    }
+
+    if (config.season) {
+        params.set('season', config.season)
+    }
+
+    return (
+        await client.get<NHLTeamStats[]>(`teams/${id}/stats?${params.toString()}`)
+    ).stats
+}
+
 function buildSearchParams(config: TeamsConfig) {
     const params = new URLSearchParams()
 
@@ -97,4 +119,5 @@ export const teams = {
     getAll,
     getById,
     getRoster,
+    getStats,
 }

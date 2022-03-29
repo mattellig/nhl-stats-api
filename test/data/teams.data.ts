@@ -1,4 +1,4 @@
-import { NHLRosterPlayer, NHLTeam } from '../../src'
+import { NHLRosterPlayer, NHLTeam, NHLTeamStats } from '../../src'
 
 export const mockTeamData: NHLTeam[] = [
     {
@@ -36,6 +36,57 @@ export const mockTeamData: NHLTeam[] = [
             teamName: 'Maple Leafs',
             link: '/api/v1/franchises/5',
         },
+        teamStats: [
+            {
+                type: {
+                    displayName: 'statsSingleSeason',
+                    gameType: {
+                        id: 'R',
+                        description: 'Regular season',
+                        postseason: false,
+                    },
+                },
+                splits: [
+                    {
+                        stat: {
+                            gamesPlayed: 65,
+                            wins: 41,
+                            losses: 19,
+                            ot: 5,
+                            pts: 87,
+                            ptPctg: '66.9',
+                            goalsPerGame: 3.646,
+                            goalsAgainstPerGame: 3.015,
+                            evGGARatio: 1.1027,
+                            powerPlayPercentage: '29.2',
+                            powerPlayGoals: 50.0,
+                            powerPlayGoalsAgainst: 29.0,
+                            powerPlayOpportunities: 171.0,
+                            penaltyKillPercentage: '84.2',
+                            shotsPerGame: 34.6308,
+                            shotsAllowed: 30.6923,
+                            winScoreFirst: 0.778,
+                            winOppScoreFirst: 0.448,
+                            winLeadFirstPer: 0.833,
+                            winLeadSecondPer: 0.909,
+                            winOutshootOpp: 0.585,
+                            winOutshotByOpp: 0.696,
+                            faceOffsTaken: 3779.0,
+                            faceOffsWon: 2094.0,
+                            faceOffsLost: 1685.0,
+                            faceOffWinPercentage: '55.4',
+                            shootingPctg: 10.5,
+                            savePctg: 0.902,
+                        },
+                        team: {
+                            id: 10,
+                            name: 'Toronto Maple Leafs',
+                            link: '/api/v1/teams/10',
+                        },
+                    },
+                ]
+            },
+        ],
         roster: [
             {
                 person: {
@@ -167,7 +218,7 @@ export const mockTeamData: NHLTeam[] = [
         franchiseId: 25,
         active: true,
     },
-];
+]
 
 function read(): NHLTeam[] {
     return mockTeamData
@@ -178,11 +229,16 @@ function readById(id: number): NHLTeam[] {
 }
 
 function readRoster(id: number): NHLRosterPlayer[] {
-    return mockTeamData.find((t) => t.id === id).roster;
+    return mockTeamData.find((t) => t.id === id).roster
+}
+
+function readStats(id: number): NHLTeamStats[] {
+    return mockTeamData.find((t) => t.id === id).teamStats
 }
 
 export const teamsDb = {
     read,
     readById,
     readRoster,
+    readStats,
 }
