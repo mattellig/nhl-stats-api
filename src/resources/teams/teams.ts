@@ -5,7 +5,10 @@ export interface TeamsConfig {
     expandConference?: boolean
     expandDivision?: boolean
     expandFranchise?: boolean
+    expandPlayerInfo?: boolean
+    includeRoster?: boolean
     includeSocials?: boolean
+    includeStats?: boolean
     season?: string
 }
 
@@ -83,7 +86,14 @@ async function getStats(id: number, config: TeamStatsConfig = {}): Promise<NHLTe
 function buildSearchParams(config: TeamsConfig) {
     const params = new URLSearchParams()
 
-    if (config.expandConference || config.expandDivision || config.expandFranchise || config.includeSocials) {
+    if (config.expandConference
+        || config.expandDivision
+        || config.expandFranchise
+        || config.expandPlayerInfo
+        || config.includeRoster
+        || config.includeSocials
+        || config.includeStats
+    ) {
         const expand = []
 
         if (config.expandConference) {
@@ -98,8 +108,20 @@ function buildSearchParams(config: TeamsConfig) {
             expand.push('team.franchise')
         }
 
+        if (config.expandPlayerInfo || config.includeRoster) {
+            expand.push('team.roster')
+
+            if (config.expandPlayerInfo) {
+                expand.push('roster.person')
+            }
+        }
+
         if (config.includeSocials) {
             expand.push('team.social')
+        }
+
+        if (config.includeStats) {
+            expand.push('team.stats')
         }
 
         if (expand.length) {
