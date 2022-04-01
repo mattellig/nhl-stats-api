@@ -1,4 +1,5 @@
 import { NHLDivision } from '../../src';
+import { mockConferenceData } from './conferences.data';
 
 export const mockDivisionData: NHLDivision[] = [
     {
@@ -39,12 +40,24 @@ export const mockDivisionData: NHLDivision[] = [
     },
 ]
 
-function read(): NHLDivision[] {
-    return mockDivisionData
+function read(expand?: string): NHLDivision[] {
+    return mockDivisionData.map((d) => expandDivisionData(d, expand))
 }
 
-function readById(id: number): NHLDivision[] {
-    return [mockDivisionData.find((d) => d.id === id)]
+function readById(id: number, expand?: string): NHLDivision[] {
+    const division = expandDivisionData(mockDivisionData.find((d) => d.id === id), expand)
+    return [division]
+}
+
+function expandDivisionData(division: NHLDivision, expand?: string) {
+    if (!expand) return division
+
+    return {
+        ...division,
+        conference: expand.includes('division.conference')
+            ? mockConferenceData.find((c) => c.id === division.conference.id)
+            : division.conference,
+    }
 }
 
 export const divisionsDb = { read, readById }
