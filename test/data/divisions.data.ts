@@ -1,4 +1,4 @@
-import { NHLDivision } from '../../src';
+import { NHLDivision } from '../../src/types';
 import { mockConferenceData } from './conferences.data';
 
 export const mockDivisionData: NHLDivision[] = [
@@ -13,6 +13,7 @@ export const mockDivisionData: NHLDivision[] = [
             name: 'Eastern',
             link: '/api/v1/conferences/6',
         },
+        active: true,
     },
     {
         id: 16,
@@ -25,6 +26,7 @@ export const mockDivisionData: NHLDivision[] = [
             name: 'Western',
             link: '/api/v1/conferences/5',
         },
+        active: true,
     },
     {
         id: 18,
@@ -37,19 +39,33 @@ export const mockDivisionData: NHLDivision[] = [
             name: 'Eastern',
             link: '/api/v1/conferences/6',
         },
+        active: true,
     },
+    {
+        id: 15,
+        name: 'Pacific',
+        nameShort: 'PAC',
+        link: '/api/v1/divisions/15',
+        abbreviation: 'P',
+        conference: {
+            id: 5,
+            name: 'Western',
+            link: '/api/v1/conferences/5'
+        },
+        active: true,
+    }
 ]
 
-function read(expand?: string): NHLDivision[] {
+function read(expand: string[]): NHLDivision[] {
     return mockDivisionData.map((d) => expandDivisionData(d, expand))
 }
 
-function readById(id: number, expand?: string): NHLDivision[] {
+function readById(id: number, expand: string[]): NHLDivision[] {
     const division = expandDivisionData(mockDivisionData.find((d) => d.id === id), expand)
     return [division]
 }
 
-function expandDivisionData(division: NHLDivision, expand?: string) {
+function expandDivisionData(division: NHLDivision, expand: string[]) {
     if (!expand) return division
 
     return {

@@ -15,8 +15,13 @@ export const client = {
             },
             method: 'GET',
         }
+
+        let url = `${baseUrl}/${resource}`
+        if (params) {
+            url += `?${params}`;
+        }
     
-        return fetch(`${baseUrl}/${resource}?${params}`, config)
+        return fetch(url, config)
             .then(async (response) => {
                 if (response.ok) {
                     return await response.json()

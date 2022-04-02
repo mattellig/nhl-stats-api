@@ -1,5 +1,5 @@
 import { mockDivisionData } from '../../../test/data'
-import { NHLDivision } from '../../types'
+import { validateExpanded } from '../../../test/utils/validateExpanded'
 import { divisions } from './divisions'
 
 describe('divisions', () => {
@@ -13,7 +13,7 @@ describe('divisions', () => {
         it('should include expanded conference info if specified', async () => {
             const results = await divisions.getAll({ expandConference: true })
 
-            results.forEach(validateExpandedConferenceInfo)
+            results.forEach((d) => validateExpanded.conference(d.conference))
         })
     })
 
@@ -31,13 +31,7 @@ describe('divisions', () => {
 
             const result = await divisions.getById(divisionId, { expandConference: true })
 
-            validateExpandedConferenceInfo(result)
+            validateExpanded.conference(result.conference)
         })
     })
 })
-
-function validateExpandedConferenceInfo(division: NHLDivision) {
-    expect(division.conference).toHaveProperty('abbreviation')
-    expect(division.conference).toHaveProperty('shortName')
-    expect(division.conference).toHaveProperty('active')
-}

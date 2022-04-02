@@ -20,20 +20,20 @@ export interface TeamsRosterConfig {
     season?: string
 }
 
-export interface TeamStatsConfig {
+export interface TeamsStatsConfig {
     expandTeam?: boolean
     season?: string
 }
 
 async function getAll(config: TeamsConfig = {}): Promise<NHLTeam[]> {
     return (
-        await client.get<NHLTeam[]>(`teams?${buildSearchParams(config)}`)
+        await client.get<NHLTeam[]>('teams', buildSearchParams(config))
     ).teams
 }
 
 async function getById(id: number, config: TeamsConfig = {}): Promise<NHLTeam> {
     return (
-        await client.get<NHLTeam[]>(`teams/${id}?${buildSearchParams(config)}`)
+        await client.get<NHLTeam[]>(`teams/${id}`, buildSearchParams(config))
     ).teams[0]
 }
 
@@ -63,11 +63,11 @@ async function getRoster(id: number, config: TeamsRosterConfig = {}): Promise<NH
     }
 
     return (
-        await client.get<NHLRosterPlayer[]>(`teams/${id}/roster?${params.toString()}`)
+        await client.get<NHLRosterPlayer[]>(`teams/${id}/roster`, params.toString())
     ).roster
 }
 
-async function getStats(id: number, config: TeamStatsConfig = {}): Promise<NHLTeamStats[]> {
+async function getStats(id: number, config: TeamsStatsConfig = {}): Promise<NHLTeamStats[]> {
     const params = new URLSearchParams()
 
     if (config.expandTeam) {
@@ -79,7 +79,7 @@ async function getStats(id: number, config: TeamStatsConfig = {}): Promise<NHLTe
     }
 
     return (
-        await client.get<NHLTeamStats[]>(`teams/${id}/stats?${params.toString()}`)
+        await client.get<NHLTeamStats[]>(`teams/${id}/stats`, params.toString())
     ).stats
 }
 

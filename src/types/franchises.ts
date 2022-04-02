@@ -1,14 +1,10 @@
 export interface NHLFranchise {
     franchiseId: number
+    teamName: string
+    link: string
 
-    // not included in the teams api
+    // not always included/not in all resources that include franchises
     firstSeasonId?: number
     mostRecentTeamId?: number
-
-    teamName: string
-
-    // not included in the teams api
     locationName?: string
-
-    link: string
 }

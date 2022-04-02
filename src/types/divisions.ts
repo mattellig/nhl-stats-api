@@ -1,17 +1,15 @@
 import { NHLConference } from './conferences'
 
 export interface NHLDivision {
-    // some divisions have no id or names (on teams, for example)
+    link: string
+
+    // some divisions do not have this information, especially older divisions included with other resources
     id?: number
     name?: string
     nameShort?: string
-
-    link: string
-
-    // some divisions have no abbreviation (on teams, for example)
     abbreviation?: string
 
-    // not included in the teams api
+    // not always included/not in all resources that include divisions
     conference?: NHLConference
     active?: boolean
 }

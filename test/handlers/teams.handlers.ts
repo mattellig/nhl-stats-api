@@ -6,9 +6,11 @@ const url = `${baseUrl}/teams`
 
 export const teamsHandlers = [
     // GET /teams
-    rest.get(url, (_req, res, ctx) => {
+    rest.get(url, (req, res, ctx) => {
+        const expand = req.url.searchParams.getAll('expand')
+
         try {
-            const data = teamsDb.read()
+            const data = teamsDb.read(expand)
             return res(ctx.status(200), ctx.json({ teams: data }))
         } catch (err) {
             return res(ctx.status(400), ctx.json({ message: err.message }))
@@ -19,8 +21,10 @@ export const teamsHandlers = [
     rest.get(`${url}/:id`, (req, res, ctx) => {
         const { id } = req.params
 
+        const expand = req.url.searchParams.getAll('expand')
+
         try {
-            const data = teamsDb.readById(Number(id))
+            const data = teamsDb.readById(Number(id), expand)
             return res(ctx.status(200), ctx.json({ teams: data }))
         } catch (err) {
             return res(ctx.status(400), ctx.json({ message: err.message }))

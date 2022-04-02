@@ -1,4 +1,7 @@
-import { NHLRosterPlayer, NHLTeam, NHLTeamStats } from '../../src'
+import { NHLRosterPlayer, NHLSocialMedia, NHLTeam, NHLTeamStats } from '../../src/types'
+import { mockConferenceData } from './conferences.data'
+import { mockDivisionData } from './divisions.data'
+import { mockFranchiseData } from './franchises.data'
 
 export const mockTeamData: NHLTeam[] = [
     {
@@ -36,101 +39,6 @@ export const mockTeamData: NHLTeam[] = [
             teamName: 'Maple Leafs',
             link: '/api/v1/franchises/5',
         },
-        teamStats: [
-            {
-                type: {
-                    displayName: 'statsSingleSeason',
-                    gameType: {
-                        id: 'R',
-                        description: 'Regular season',
-                        postseason: false,
-                    },
-                },
-                splits: [
-                    {
-                        stat: {
-                            gamesPlayed: 65,
-                            wins: 41,
-                            losses: 19,
-                            ot: 5,
-                            pts: 87,
-                            ptPctg: '66.9',
-                            goalsPerGame: 3.646,
-                            goalsAgainstPerGame: 3.015,
-                            evGGARatio: 1.1027,
-                            powerPlayPercentage: '29.2',
-                            powerPlayGoals: 50.0,
-                            powerPlayGoalsAgainst: 29.0,
-                            powerPlayOpportunities: 171.0,
-                            penaltyKillPercentage: '84.2',
-                            shotsPerGame: 34.6308,
-                            shotsAllowed: 30.6923,
-                            winScoreFirst: 0.778,
-                            winOppScoreFirst: 0.448,
-                            winLeadFirstPer: 0.833,
-                            winLeadSecondPer: 0.909,
-                            winOutshootOpp: 0.585,
-                            winOutshotByOpp: 0.696,
-                            faceOffsTaken: 3779.0,
-                            faceOffsWon: 2094.0,
-                            faceOffsLost: 1685.0,
-                            faceOffWinPercentage: '55.4',
-                            shootingPctg: 10.5,
-                            savePctg: 0.902,
-                        },
-                        team: {
-                            id: 10,
-                            name: 'Toronto Maple Leafs',
-                            link: '/api/v1/teams/10',
-                        },
-                    },
-                ]
-            },
-        ],
-        roster: [
-            {
-                person: {
-                    id: 8475789,
-                    fullName: 'Jack Campbell',
-                    link: '/api/v1/people/8475789'
-                },
-                jerseyNumber: '36',
-                position: {
-                    code: 'G',
-                    name: 'Goalie',
-                    type: 'Goalie',
-                    abbreviation: 'G',
-                },
-            },
-            {
-                person: {
-                    id: 8475166,
-                    fullName: 'John Tavares',
-                    link: '/api/v1/people/8475166'
-                },
-                jerseyNumber: '91',
-                position: {
-                    code: 'C',
-                    name: 'Center',
-                    type: 'Forward',
-                    abbreviation: 'C',
-                },
-            },
-            {
-                person: {
-                    id: 8478483,
-                    fullName: 'Mitchell Marner',
-                    link: '/api/v1/people/8478483'
-                },
-                jerseyNumber: '16',
-                position: {
-                    code: 'R',
-                    name: 'Right Wing',
-                    type: 'Forward',
-                    abbreviation: 'RW',
-                },
-            },
-        ],
         shortName: 'Toronto',
         officialSiteUrl: 'http://www.mapleleafs.com/',
         franchiseId: 5,
@@ -220,20 +128,290 @@ export const mockTeamData: NHLTeam[] = [
     },
 ]
 
-function read(): NHLTeam[] {
-    return mockTeamData
+export const mockTeamRoster: NHLRosterPlayer[] = [
+    {
+        person: {
+            id: 8475789,
+            fullName: 'Jack Campbell',
+            link: '/api/v1/people/8475789',
+        },
+        jerseyNumber: '36',
+        position: {
+            code: 'G',
+            name: 'Goalie',
+            type: 'Goalie',
+            abbreviation: 'G',
+        },
+    },
+    {
+        person: {
+            id: 8475166,
+            fullName: 'John Tavares',
+            link: '/api/v1/people/8475166',
+        },
+        jerseyNumber: '91',
+        position: {
+            code: 'C',
+            name: 'Center',
+            type: 'Forward',
+            abbreviation: 'C',
+        },
+    },
+    {
+        person: {
+            id: 8478483,
+            fullName: 'Mitchell Marner',
+            link: '/api/v1/people/8478483',
+        },
+        jerseyNumber: '16',
+        position: {
+            code: 'R',
+            name: 'Right Wing',
+            type: 'Forward',
+            abbreviation: 'RW',
+        },
+    },
+]
+
+const mockTeamRosterExpanded: NHLRosterPlayer[] = [
+    {
+        person: {
+            id: 8475789,
+            fullName: 'Jack Campbell',
+            link: '/api/v1/people/8475789',
+            firstName: 'Jack',
+            lastName: 'Campbell',
+            primaryNumber: '36',
+            birthDate: '1992-01-09',
+            currentAge: 30,
+            birthCity: 'Port Huron',
+            birthStateProvince: 'MI',
+            birthCountry: 'USA',
+            nationality: 'USA',
+            height: '6\' 3"',
+            weight: 207,
+            active: true,
+            alternateCaptain: false,
+            captain: false,
+            rookie: false,
+            shootsCatches: 'L',
+            rosterStatus: 'I',
+            currentTeam: {
+                id: 10,
+                name: 'Toronto Maple Leafs',
+                link: '/api/v1/teams/10',
+            },
+            primaryPosition: {
+                code: 'G',
+                name: 'Goalie',
+                type: 'Goalie',
+                abbreviation: 'G',
+            },
+        },
+        jerseyNumber: '36',
+        position: {
+            code: 'G',
+            name: 'Goalie',
+            type: 'Goalie',
+            abbreviation: 'G',
+        },
+    },
+    {
+        person: {
+            id: 8475166,
+            fullName: 'John Tavares',
+            link: '/api/v1/people/8475166',
+            firstName: 'John',
+            lastName: 'Tavares',
+            primaryNumber: '91',
+            birthDate: '1990-09-20',
+            currentAge: 31,
+            birthCity: 'Mississauga',
+            birthStateProvince: 'ON',
+            birthCountry: 'CAN',
+            nationality: 'CAN',
+            height: '6\' 1"',
+            weight: 211,
+            active: true,
+            alternateCaptain: false,
+            captain: true,
+            rookie: false,
+            shootsCatches: 'L',
+            rosterStatus: 'Y',
+            currentTeam: {
+                id: 10,
+                name: 'Toronto Maple Leafs',
+                link: '/api/v1/teams/10',
+            },
+            primaryPosition: {
+                code: 'C',
+                name: 'Center',
+                type: 'Forward',
+                abbreviation: 'C',
+            },
+        },
+        jerseyNumber: '91',
+        position: {
+            code: 'C',
+            name: 'Center',
+            type: 'Forward',
+            abbreviation: 'C',
+        },
+    },
+    {
+        person: {
+            id: 8478483,
+            fullName: 'Mitchell Marner',
+            link: '/api/v1/people/8478483',
+            firstName: 'Mitchell',
+            lastName: 'Marner',
+            primaryNumber: '16',
+            birthDate: '1997-05-05',
+            currentAge: 24,
+            birthCity: 'Markham',
+            birthStateProvince: 'ON',
+            birthCountry: 'CAN',
+            nationality: 'CAN',
+            height: '6\' 0"',
+            weight: 172,
+            active: true,
+            alternateCaptain: true,
+            captain: false,
+            rookie: false,
+            shootsCatches: 'R',
+            rosterStatus: 'Y',
+            currentTeam: {
+                id: 10,
+                name: 'Toronto Maple Leafs',
+                link: '/api/v1/teams/10',
+            },
+            primaryPosition: {
+                code: 'R',
+                name: 'Right Wing',
+                type: 'Forward',
+                abbreviation: 'RW',
+            },
+        },
+        jerseyNumber: '16',
+        position: {
+            code: 'R',
+            name: 'Right Wing',
+            type: 'Forward',
+            abbreviation: 'RW',
+        },
+    },
+]
+
+export const mockTeamStats: [NHLTeamStats] = [
+    {
+        type: {
+            displayName: 'statsSingleSeason',
+            gameType: {
+                id: 'R',
+                description: 'Regular season',
+                postseason: false,
+            },
+        },
+        splits: [
+            {
+                stat: {
+                    gamesPlayed: 65,
+                    wins: 41,
+                    losses: 19,
+                    ot: 5,
+                    pts: 87,
+                    ptPctg: '66.9',
+                    goalsPerGame: 3.646,
+                    goalsAgainstPerGame: 3.015,
+                    evGGARatio: 1.1027,
+                    powerPlayPercentage: '29.2',
+                    powerPlayGoals: 50.0,
+                    powerPlayGoalsAgainst: 29.0,
+                    powerPlayOpportunities: 171.0,
+                    penaltyKillPercentage: '84.2',
+                    shotsPerGame: 34.6308,
+                    shotsAllowed: 30.6923,
+                    winScoreFirst: 0.778,
+                    winOppScoreFirst: 0.448,
+                    winLeadFirstPer: 0.833,
+                    winLeadSecondPer: 0.909,
+                    winOutshootOpp: 0.585,
+                    winOutshotByOpp: 0.696,
+                    faceOffsTaken: 3779.0,
+                    faceOffsWon: 2094.0,
+                    faceOffsLost: 1685.0,
+                    faceOffWinPercentage: '55.4',
+                    shootingPctg: 10.5,
+                    savePctg: 0.902,
+                },
+                team: {
+                    id: 10,
+                    name: 'Toronto Maple Leafs',
+                    link: '/api/v1/teams/10',
+                },
+            },
+        ]
+    },
+]
+
+const mockTeamSocials: NHLSocialMedia = {
+    twitter: ['MapleLeafs'],
+    facebook: ['torontomapleleafs'],
+    instagram: ['MapleLeafs'],
+    vine: ['MapleLeafs'],
+    periscope: ['MapleLeafs'],
+    youtube: ['torontomapleleafs'],
+    pinterest: ['mapleleafs'],
+    googleplus: ['+TorontoMapleLeafs'],
+    snapchat: ['tmlsnaps'],
 }
 
-function readById(id: number): NHLTeam[] {
-    return [mockTeamData.find((t) => t.id === id)]
+function read(expand: string[]): NHLTeam[] {
+    return mockTeamData.map((t) => expandTeamData(t, expand))
 }
 
-function readRoster(id: number): NHLRosterPlayer[] {
-    return mockTeamData.find((t) => t.id === id).roster
+function readById(id: number, expand: string[]): NHLTeam[] {
+    const team = expandTeamData(mockTeamData.find((t) => t.id === id), expand)
+    return [team]
 }
 
-function readStats(id: number): NHLTeamStats[] {
-    return mockTeamData.find((t) => t.id === id).teamStats
+function readRoster(_id: number): NHLRosterPlayer[] {
+    // ignoring id - only keeping one array of mock players for simplicity
+    return mockTeamRoster
+}
+
+function readStats(_id: number): NHLTeamStats[] {
+    // ignoring id - only keeping one array of mock stats for simplicity
+    return mockTeamStats
+}
+
+function expandTeamData(team: NHLTeam, expand: string[]) {
+    const expandedTeam = {
+        ...team,
+        conference: expand.includes('team.conference')
+            ? mockConferenceData.find((c) => c.id === team.conference.id)
+            : team.conference,
+        division: expand.includes('team.division')
+            ? mockDivisionData.find((d) => d.id === team.division.id)
+            : team.division,
+        franchise: expand.includes('team.franchise')
+            ? mockFranchiseData.find((f) => f.franchiseId === team.franchiseId)
+            : team.franchise,
+        social: expand.includes('team.social')
+            ? mockTeamSocials
+            : team.social,
+        teamStats: expand.includes('team.stats')
+            ? mockTeamStats
+            : team.teamStats,
+    }
+
+    if (expand.includes('team.roster')) {
+        expandedTeam.roster = expand.includes('roster.person')
+            ? mockTeamRosterExpanded
+            : mockTeamRoster
+    }
+
+    return expandedTeam
 }
 
 export const teamsDb = {

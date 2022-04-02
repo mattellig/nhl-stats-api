@@ -1,4 +1,4 @@
-import { NHLConference } from '../../src';
+import { NHLConference } from '../../src/types';
 
 export const mockConferenceData: NHLConference[] = [
     {

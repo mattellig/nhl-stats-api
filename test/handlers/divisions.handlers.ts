@@ -7,7 +7,7 @@ const url = `${baseUrl}/divisions`
 export const divisionsHandlers = [
     // GET /divisions
     rest.get(url, (req, res, ctx) => {
-        const expand = req.url.searchParams.get('expand')
+        const expand = req.url.searchParams.getAll('expand')
 
         try {
             const data = divisionsDb.read(expand)
@@ -21,7 +21,7 @@ export const divisionsHandlers = [
     rest.get(`${url}/:id`, (req, res, ctx) => {
         const { id } = req.params;
 
-        const expand = req.url.searchParams.get('expand')
+        const expand = req.url.searchParams.getAll('expand')
 
         try {
             const data = divisionsDb.readById(Number(id), expand)

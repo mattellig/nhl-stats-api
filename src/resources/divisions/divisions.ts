@@ -8,13 +8,13 @@ export interface DivisionsConfig {
 
 async function getAll(config: DivisionsConfig = {}): Promise<NHLDivision[]> {
     return (
-        await client.get<NHLDivision[]>(`divisions?${buildSearchParams(config)}`)
+        await client.get<NHLDivision[]>('divisions', buildSearchParams(config))
     ).divisions
 }
 
 async function getById(id: number, config: DivisionsConfig = {}): Promise<NHLDivision> {
     return (
-        await client.get<NHLDivision[]>(`divisions/${id}?${buildSearchParams(config)}`)
+        await client.get<NHLDivision[]>(`divisions/${id}`, buildSearchParams(config))
     ).divisions[0]
 }
 
