@@ -1,7 +1,7 @@
 import { NHLRosterPlayer, NHLSocialMedia, NHLTeam, NHLTeamStats } from '../../src/types'
-import { mockConferenceData } from './conferences.data'
-import { mockDivisionData } from './divisions.data'
-import { mockFranchiseData } from './franchises.data'
+import { mockConferenceData } from './conferences'
+import { mockDivisionData } from './divisions'
+import { mockFranchiseData } from './franchises'
 
 export const mockTeamData: NHLTeam[] = [
     {
@@ -350,7 +350,7 @@ export const mockTeamStats: [NHLTeamStats] = [
                     link: '/api/v1/teams/10',
                 },
             },
-        ]
+        ],
     },
 ]
 

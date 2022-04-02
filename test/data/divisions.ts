@@ -1,5 +1,5 @@
 import { NHLDivision } from '../../src/types';
-import { mockConferenceData } from './conferences.data';
+import { mockConferenceData } from './conferences';
 
 export const mockDivisionData: NHLDivision[] = [
     {
@@ -50,10 +50,10 @@ export const mockDivisionData: NHLDivision[] = [
         conference: {
             id: 5,
             name: 'Western',
-            link: '/api/v1/conferences/5'
+            link: '/api/v1/conferences/5',
         },
         active: true,
-    }
+    },
 ]
 
 function read(expand: string[]): NHLDivision[] {

@@ -7,9 +7,10 @@ describe('client', () => {
             const mockData = { resource: 'test' }
 
             server.use(
-                rest.get(`${baseUrl}/fake`, (_req, res, ctx) => {
-                    return res(ctx.status(200), ctx.json(mockData))
-                })
+                rest.get(`${baseUrl}/fake`, (_req, res, ctx) => res(
+                    ctx.status(200),
+                    ctx.json(mockData),
+                )),
             )
 
             expect(client.get('fake')).resolves.toEqual(mockData)
@@ -17,9 +18,10 @@ describe('client', () => {
 
         it('should reject with an Error when a request fails', async () => {
             server.use(
-                rest.get(`${baseUrl}/fake`, (_req, res, ctx) => {
-                    return res(ctx.status(400), ctx.json({ message: 'error' }))
-                })
+                rest.get(`${baseUrl}/fake`, (_req, res, ctx) => res(
+                    ctx.status(400),
+                    ctx.json({ message: 'error' }),
+                )),
             )
 
             try {

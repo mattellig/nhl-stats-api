@@ -1,7 +1,7 @@
-import { conferencesHandlers } from './conferences.handlers'
-import { divisionsHandlers } from './divisions.handlers'
-import { franchisesHandlers } from './franchises.handlers'
-import { teamsHandlers } from './teams.handlers'
+import { conferencesHandlers } from './conferences'
+import { divisionsHandlers } from './divisions'
+import { franchisesHandlers } from './franchises'
+import { teamsHandlers } from './teams'
 
 export const handlers = [
     ...conferencesHandlers,

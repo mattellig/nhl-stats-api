@@ -20,13 +20,13 @@ export const client = {
         if (params) {
             url += `?${params}`;
         }
-    
+
         return fetch(url, config)
             .then(async (response) => {
                 if (response.ok) {
-                    return await response.json()
+                    return response.json()
                 }
-    
+
                 const error = await response.json()
                 return Promise.reject(new Error(error.message))
             })
