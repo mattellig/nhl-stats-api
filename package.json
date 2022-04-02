@@ -13,7 +13,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rollup -c",
-    "lint": "eslint --ext .ts ./{src,test}/",
+    "lint": "eslint . --ext .ts",
     "test": "jest",
     "watch": "rollup -cw"
   },
