@@ -3,16 +3,20 @@ import { franchises } from './franchises'
 
 describe('franchises', () => {
     describe('.getAll', () => {
-        it('should resolve to an array of NHLFranchises', () => {
-            expect(franchises.getAll()).resolves.toEqual(mockFranchiseData)
+        it('should resolve to an array of NHLFranchises', async () => {
+            const results = await franchises.getAll()
+
+            expect(results).toEqual(mockFranchiseData)
         })
     })
 
     describe('.getById', () => {
-        it('should resolve to a single NHLFranchise', () => {
+        it('should resolve to a single NHLFranchise', async () => {
             const franchise = mockFranchiseData[0]
 
-            expect(franchises.getById(franchise.franchiseId)).resolves.toEqual(franchise)
+            const result = await franchises.getById(franchise.franchiseId)
+
+            expect(result).toEqual(franchise)
         })
     })
 })
