@@ -9,3 +9,12 @@ export interface NHLSocialMedia {
     googleplus?: string[]
     snapchat?: string[]
 }
+
+export interface NHLStatsType {
+    displayName: string
+    gameType: null | {
+        id: string
+        description: string
+        postseason: boolean
+    }
+}

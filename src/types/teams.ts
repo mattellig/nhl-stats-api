@@ -2,7 +2,7 @@ import { NHLConference } from './conferences'
 import { NHLDivision } from './divisions'
 import { NHLFranchise } from './franchises'
 import { NHLPlayer, NHLPosition } from './players'
-import { NHLSocialMedia } from './shared'
+import { NHLSocialMedia, NHLStatsType } from './shared'
 import { NHLVenue } from './venues'
 
 export interface NHLRosterPlayer {
@@ -49,11 +49,13 @@ export interface NHLTeamStatRankings {
     pts: string
     ptPctg: string
     goalsPerGame: string
+    goalsAgainstPerGame: string
     evGGARatio: string
     powerPlayPercentage: string
     powerPlayGoals: string
     powerPlayGoalsAgainst: string
     powerPlayOpportunities: string
+    penaltyKillOpportunities: string
     penaltyKillPercentage: string
     shotsPerGame: string
     shotsAllowed: string
@@ -72,19 +74,16 @@ export interface NHLTeamStatRankings {
 }
 
 export interface NHLTeamStats {
-    type: {
-        displayName: string
-        gameType: null | {
-            id: string
-            description: string
-            postseason: boolean
-        }
-    }
+    type: NHLStatsType
     splits: [
         {
-            stat: NHLTeamStatsSingleSeason | NHLTeamStatRankings,
+            stat: NHLTeamStatsSingleSeason
             team: NHLTeam
         },
+        {
+            stat: NHLTeamStatRankings
+            team: NHLTeam
+        }
     ]
 }
 

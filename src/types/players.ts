@@ -1,4 +1,4 @@
-import { NHLSocialMedia } from './shared';
+import { NHLSocialMedia, NHLStatsType } from './shared';
 import { NHLTeam } from './teams';
 
 export type NHLPosition =
@@ -9,6 +9,12 @@ export type NHLPosition =
     | { code: 'C'; name: 'Center'; type: 'Forward'; abbreviation: 'C' }
     | { code: 'N/A'; name: 'Unknown'; type: 'Unknown'; abbreviation: 'N/A' }
     | { code: 'HC'; name: 'Head Coach'; type: 'Coach'; abbreviation: 'Head Coach' }
+
+export interface NHLPlayerOtherNames {
+    slug: string
+    lastFirstName: string
+    firstLastNameRoman: string
+}
 
 export interface NHLPlayer {
     id: number
@@ -36,9 +42,56 @@ export interface NHLPlayer {
     currentTeam?: NHLTeam
     primaryPosition?: NHLPosition
     social?: NHLSocialMedia
-    otherNames?: {
-        slug: string
-        lastFirstName: string
-        firstLastNameRoman: string
-    }
+    otherNames?: NHLPlayerOtherNames
+}
+
+export interface NHLPlayerStats {
+    type: NHLStatsType
+    splits: {
+        season: string
+        stat: {
+            assists: number
+            goals: number
+            pim: number
+            games: number
+            penaltyMinutes: string
+            plusMinus: number
+            points: number
+
+            // not always included
+            timeOnIce?: string
+            shots?: number
+            hits?: number
+            powerPlayGoals?: number
+            powerPlayPoints?: number
+            powerPlayTimeOnIce?: string
+            evenTimeOnIce?: string
+            faceOffPct?: number
+            shotPct?: number
+            gameWinningGoals?: number
+            overTimeGoals?: number
+            shortHandedGoals?: number
+            shortHandedPoints?: number
+            shortHandedTimeOnIce?: string
+            blocked?: number
+            shifts?: number
+            timeOnIcePerGame?: string
+            evenTimeOnIcePerGame?: string
+            shortHandedTimeOnIcePerGame?: string
+            powerPlayTimeOnIcePerGame?: string
+        }
+
+        // not always included
+        team?: {
+            id?: number
+            name: string
+            link: string
+        }
+        league?: {
+            id?: number
+            name: string
+            link: string
+        }
+        sequenceNumber?: number
+    }[]
 }
