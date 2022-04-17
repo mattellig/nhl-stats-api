@@ -2,7 +2,7 @@ import { NHLConference } from './conferences'
 import { NHLDivision } from './divisions'
 import { NHLFranchise } from './franchises'
 import { NHLPlayer, NHLPosition } from './players'
-import { NHLSingleSeasonStatsType, NHLSocialMedia } from './shared'
+import { NHLSingleSeasonStatType, NHLSocialMedia } from './shared'
 import { NHLVenue } from './venues'
 
 export interface NHLRosterPlayer {
@@ -75,7 +75,7 @@ export interface NHLTeamStatRankings {
 
 export type NHLTeamStats = [
     {
-        type: NHLSingleSeasonStatsType
+        type: NHLSingleSeasonStatType
         splits: [{
             stat: NHLTeamStatsSingleSeason
             team: NHLTeam
@@ -109,7 +109,7 @@ export interface NHLTeam {
     franchise?: NHLFranchise
     teamStats?: [
         {
-            type: NHLSingleSeasonStatsType
+            type: NHLSingleSeasonStatType
             splits: [{
                 stat: NHLTeamStatsSingleSeason
                 team: NHLTeam
