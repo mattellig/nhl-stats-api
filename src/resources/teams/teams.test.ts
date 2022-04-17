@@ -47,6 +47,8 @@ describe('getTeams', () => {
     })
 
     it.each<[keyof NHLTeam, TeamExpand]>([
+        ['playoffInfo', 'team.playoffs'],
+        ['record', 'team.record'],
         ['roster', 'team.roster'],
         ['social', 'team.social'],
         ['teamStats', 'team.stats'],

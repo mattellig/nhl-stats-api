@@ -10,6 +10,8 @@ export type TeamExpand =
     | 'team.conference'
     | 'team.division'
     | 'team.franchise'
+    | 'team.playoffs'
+    | 'team.record'
     | 'team.roster'
     | 'team.social'
     | 'team.stats'

@@ -123,6 +123,51 @@ export interface NHLTeam {
     }
     social?: NHLSocialMedia
     shortName?: string
+    record?: {
+        team: NHLTeam
+        leagueRecord: {
+            wins: number
+            losses: number
+            ties?: number
+            ot: number
+            type: string
+        }
+        regulationWins?: number
+        goalsAgainst: number
+        goalsScored: number
+        points: number
+        divisionRank: string
+        divisionL10Rank: string
+        divisionRoadRank: string
+        divisionHomeRank: string
+        conferenceRank: string
+        conferenceL10Rank: string
+        conferenceRoadRank: string
+        conferenceHomeRank: string
+        leagueRank: string
+        leagueL10Rank: string
+        leagueRoadRank: string
+        leagueHomeRank: string
+        wildCardRank: string
+        row?: number
+        gamesPlayed: number
+        streak: {
+            streakType: string
+            streakNumber: number
+            streakCode: string
+        }
+        clinchedIndicator?: string
+        pointsPercentage: number
+        ppDivisionRank: string
+        ppConferenceRank: string
+        ppLeagueRank: string
+        lastUpdated: string
+    }
+    playoffInfo?: {
+        inPlayoffs: boolean
+        madePlayoffs: boolean
+        teamId: number
+    }
     officialSiteUrl?: string
     franchiseId?: number
     active?: boolean
