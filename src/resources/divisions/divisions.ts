@@ -1,35 +1,27 @@
-import { client } from '../../client/client';
-import { NHLDivision } from '../../types';
+import client from '../../client/client'
+import { NHLDivision } from '../../types'
 
-export interface DivisionsConfig {
-    expandConference?: boolean
-    season?: string
+export type DivisionExpand = 'division.conference'
+
+interface BaseDivisionOptions {
+    expand?: DivisionExpand[]
 }
 
-async function getAll(config: DivisionsConfig = {}): Promise<NHLDivision[]> {
-    return (
-        await client.get<NHLDivision[]>('divisions', buildSearchParams(config))
-    ).divisions
+export interface SingleDivisionOptions extends BaseDivisionOptions {
+    id: number
 }
 
-async function getById(id: number, config: DivisionsConfig = {}): Promise<NHLDivision> {
-    return (
-        await client.get<NHLDivision[]>(`divisions/${id}`, buildSearchParams(config))
-    ).divisions[0]
+export interface MultiDivisionOptions extends BaseDivisionOptions {
+    id?: never
 }
 
-function buildSearchParams(config: DivisionsConfig) {
-    const params = new URLSearchParams()
+export type DivisionOptions = SingleDivisionOptions | MultiDivisionOptions
 
-    if (config.expandConference) {
-        params.set('expand', 'division.conference')
-    }
+function getDivisions(options?: MultiDivisionOptions): Promise<NHLDivision[]>
+function getDivisions(options: SingleDivisionOptions): Promise<NHLDivision>
 
-    if (config.season) {
-        params.set('season', config.season)
-    }
-
-    return params.toString()
+function getDivisions(options?: DivisionOptions): Promise<NHLDivision[] | NHLDivision> {
+    return client.get('divisions', options)
 }
 
-export const divisions = { getAll, getById }
+export default { getDivisions }

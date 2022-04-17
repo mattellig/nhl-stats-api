@@ -1,144 +1,108 @@
-import { client } from '../../client/client'
+import client from '../../client/client'
 import { NHLRosterPlayer, NHLTeam, NHLTeamStats } from '../../types'
 
-export interface TeamsConfig {
-    expandConference?: boolean
-    expandDivision?: boolean
-    expandFranchise?: boolean
-    expandPlayerInfo?: boolean
-    includeRoster?: boolean
-    includeSocials?: boolean
-    includeStats?: boolean
+export type RosterType = 'active' | 'fullRoster'
+
+export type TeamExpand =
+    | 'roster.person'
+    | 'person.names'
+    | 'person.social'
+    | 'team.conference'
+    | 'team.division'
+    | 'team.franchise'
+    | 'team.roster'
+    | 'team.social'
+    | 'team.stats'
+
+interface BaseTeamOptions {
+    expand?: TeamExpand[]
+    rosterType?: RosterType
     season?: string
 }
 
-export interface TeamsRosterConfig {
-    fullRoster?: boolean
-    expandPlayerInfo?: boolean
-    includePlayerNames?: boolean
-    includePlayerSocials?: boolean
+export interface SingleTeamOptions extends BaseTeamOptions {
+    id: number
+}
+
+export interface MultiTeamOptions extends BaseTeamOptions {
+    id?: never
+}
+
+export type TeamOptions = SingleTeamOptions | MultiTeamOptions
+
+export type TeamRosterExpand =
+    | 'roster.person'
+    | 'person.names'
+    | 'person.social'
+
+export interface TeamRosterOptions {
+    expand?: TeamRosterExpand[]
+    id: number
+    rosterType?: RosterType
     season?: string
 }
 
-export interface TeamsStatsConfig {
-    expandTeam?: boolean
+export type StatsExpand = 'stats.team'
+
+export interface TeamStatsOptions {
+    expand?: StatsExpand[]
+    id: number
     season?: string
 }
 
-async function getAll(config: TeamsConfig = {}): Promise<NHLTeam[]> {
-    return (
-        await client.get<NHLTeam[]>('teams', buildSearchParams(config))
-    ).teams
-}
+function getTeams(options?: MultiTeamOptions): Promise<NHLTeam[]>
+function getTeams(options: SingleTeamOptions): Promise<NHLTeam>
 
-async function getById(id: number, config: TeamsConfig = {}): Promise<NHLTeam> {
-    return (
-        await client.get<NHLTeam[]>(`teams/${id}`, buildSearchParams(config))
-    ).teams[0]
-}
+function getTeams(options: TeamOptions = {}): Promise<NHLTeam[] | NHLTeam> {
+    let config = { ...options }
 
-async function getRoster(id: number, config: TeamsRosterConfig = {}): Promise<NHLRosterPlayer[]> {
-    const params = new URLSearchParams()
+    if (config.expand) {
+        const expand = [...options.expand]
 
-    if (config.expandPlayerInfo || config.includePlayerNames || config.includePlayerSocials) {
-        const expand = ['roster.person']
-
-        if (config.includePlayerNames) {
-            expand.push('person.names')
-        }
-
-        if (config.includePlayerSocials) {
-            expand.push('person.social')
-        }
-
-        params.set('expand', expand.join(''))
-    }
-
-    if (config.fullRoster) {
-        params.set('rosterType', 'fullRoster')
-    }
-
-    if (config.season) {
-        params.set('season', config.season)
-    }
-
-    return (
-        await client.get<NHLRosterPlayer[]>(`teams/${id}/roster`, params.toString())
-    ).roster
-}
-
-async function getStats(id: number, config: TeamsStatsConfig = {}): Promise<NHLTeamStats[]> {
-    const params = new URLSearchParams()
-
-    if (config.expandTeam) {
-        params.set('expand', 'stats.team')
-    }
-
-    if (config.season) {
-        params.set('season', config.season)
-    }
-
-    return (
-        await client.get<NHLTeamStats[]>(`teams/${id}/stats`, params.toString())
-    ).stats
-}
-
-function buildSearchParams(config: TeamsConfig) {
-    const params = new URLSearchParams()
-
-    if (config.expandConference
-        || config.expandDivision
-        || config.expandFranchise
-        || config.expandPlayerInfo
-        || config.includeRoster
-        || config.includeSocials
-        || config.includeStats
-    ) {
-        const expand = []
-
-        if (config.expandConference) {
-            expand.push('team.conference')
-        }
-
-        if (config.expandDivision) {
-            expand.push('team.division')
-        }
-
-        if (config.expandFranchise) {
-            expand.push('team.franchise')
-        }
-
-        if (config.expandPlayerInfo || config.includeRoster) {
-            expand.push('team.roster')
-
-            if (config.expandPlayerInfo) {
-                expand.push('roster.person')
+        if (!expand.includes('team.roster')) {
+            const propsRequiringRoster = ['roster.person', 'person.names', 'person.social']
+            if (expand.some((e) => propsRequiringRoster.includes(e))) {
+                expand.push('team.roster')
             }
         }
 
-        if (config.includeSocials) {
-            expand.push('team.social')
-        }
-
-        if (config.includeStats) {
-            expand.push('team.stats')
-        }
-
-        if (expand.length) {
-            params.set('expand', expand.join(','))
+        config = {
+            ...config,
+            expand: validateRosterExpands(expand) as TeamExpand[],
         }
     }
 
-    if (config.season) {
-        params.set('season', config.season)
+    return client.get('teams', config)
+}
+
+function getTeamRoster(options: TeamRosterOptions): Promise<NHLRosterPlayer[]> {
+    let config = { ...options }
+
+    if (config.expand) {
+        config = {
+            ...config,
+            expand: validateRosterExpands(config.expand) as TeamRosterExpand[],
+        }
     }
 
-    return params.toString()
+    return client.get('teams', config, 'roster')
 }
 
-export const teams = {
-    getAll,
-    getById,
-    getRoster,
-    getStats,
+function getTeamStats(options: TeamStatsOptions): Promise<NHLTeamStats> {
+    return client.get('teams', options, 'stats')
 }
+
+function validateRosterExpands(expand: TeamExpand[] | TeamRosterExpand[]) {
+    const expandCopy = [...expand]
+
+    if (!expandCopy.includes('roster.person')) {
+        const propsRequiringPerson = ['person.names', 'person.social']
+        if (expandCopy.some((e) => propsRequiringPerson.includes(e))) {
+            expandCopy.push('roster.person')
+        }
+    }
+
+    return expandCopy
+}
+
+export default { getTeamRoster, getTeams, getTeamStats }

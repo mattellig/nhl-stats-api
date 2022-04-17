@@ -1,22 +1,31 @@
-import { mockConferenceData } from '../../../test/data'
-import { conferences } from './conferences'
+import conferences from './conferences'
 
-describe('conferences', () => {
-    describe('.getAll', () => {
-        it('should resolve to an array of NHLConferences', async () => {
-            const results = await conferences.getAll()
+describe('getConferences', () => {
+    const { getConferences } = conferences
 
-            expect(results).toEqual(mockConferenceData)
-        })
+    it('should resolve to an array of NHLConferences', async () => {
+        const results = await getConferences()
+
+        expect(results).toContainEqual(
+            expect.objectContaining({
+                id: expect.anything(),
+                name: expect.anything(),
+                link: expect.stringContaining('/api/v1/conferences'),
+            }),
+        )
     })
 
-    describe('.getById', () => {
-        it('should resolve to a single NHLConference', async () => {
-            const conference = mockConferenceData[0]
+    it('should resolve to a single NHLConference when an ID is specified', async () => {
+        const conferenceId = 6 // Eastern Conference
 
-            const result = await conferences.getById(conference.id)
+        const results = await getConferences({ id: conferenceId })
 
-            expect(result).toEqual(conference)
-        })
+        expect(results).toEqual(
+            expect.objectContaining({
+                id: conferenceId,
+                name: 'Eastern',
+                link: `/api/v1/conferences/${conferenceId}`,
+            }),
+        )
     })
 })

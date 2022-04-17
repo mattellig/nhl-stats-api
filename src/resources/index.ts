@@ -1,5 +1,13 @@
-export { conferences } from './conferences/conferences'
-export { divisions } from './divisions/divisions'
-export { franchises } from './franchises/franchises'
-export { players } from './players/players'
-export { teams } from './teams/teams'
+import conferences from './conferences/conferences'
+import divisions from './divisions/divisions'
+import franchises from './franchises/franchises'
+import players from './players/players'
+import teams from './teams/teams'
+
+export default {
+    ...conferences,
+    ...divisions,
+    ...franchises,
+    ...players,
+    ...teams,
+}

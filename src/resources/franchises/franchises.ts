@@ -1,16 +1,15 @@
-import { client } from '../../client/client'
+import client from '../../client/client'
 import { NHLFranchise } from '../../types'
 
-async function getAll(): Promise<NHLFranchise[]> {
-    return (
-        await client.get<NHLFranchise[]>('franchises')
-    ).franchises
+export interface FranchiseOptions {
+    id: number
 }
 
-async function getById(id: number): Promise<NHLFranchise> {
-    return (
-        await client.get<NHLFranchise[]>(`franchises/${id}`)
-    ).franchises[0]
+function getFranchises(options?: never): Promise<NHLFranchise[]>
+function getFranchises(options: FranchiseOptions): Promise<NHLFranchise>
+
+function getFranchises(options?: FranchiseOptions): Promise<NHLFranchise[] | NHLFranchise> {
+    return client.get('franchises', options)
 }
 
-export const franchises = { getAll, getById }
+export default { getFranchises }

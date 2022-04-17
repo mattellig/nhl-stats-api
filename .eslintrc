@@ -21,15 +21,17 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "@typescript-eslint/no-redeclare": ["error"],
+        "@typescript-eslint/no-unused-vars": ["error"],
         "@typescript-eslint/no-use-before-define": ["error", "nofunc"],
         "import/extensions": ["error", {
             ".js": "never",
             ".ts": "never"
         }],
         "import/no-unresolved": ["off"],
-        "import/prefer-default-export": ["off"],
         "indent": ["error", 4],
-        "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+        "no-redeclare": ["off"],
+        "no-unused-vars": ["off"],
         "no-use-before-define": ["off"],
         "object-curly-newline": ["error", {
             "ObjectExpression": { "multiline": true, "minProperties": 4 },
@@ -37,6 +39,6 @@
             "ImportDeclaration": "never",
             "ExportDeclaration": { "multiline": true, "minProperties": 4 }
         }],
-        "semi": ["off"]
+        "semi": ["error", "never"]
     }
 }

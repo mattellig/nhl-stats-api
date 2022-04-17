@@ -1,33 +1,38 @@
-import { mockPlayerData } from '../../../test/data'
-import { validateExpanded } from '../../../test/utils/validateExpanded'
-import { players } from './players'
+import validateExpanded from '../../../test/utils/validateExpanded'
+import { NHLPlayer } from '../../types'
+import players, { PlayerExpand } from './players'
 
-const testPlayer = mockPlayerData[0]
+const playerId = 8478483 // Mitchell Marner
 
-describe('players', () => {
-    describe('.getById', () => {
-        it('should resolve to a single NHLPlayer', async () => {
-            const result = await players.getById(testPlayer.id)
+describe('getPlayer', () => {
+    const { getPlayer } = players
 
-            expect(result).toEqual(testPlayer)
-        })
+    it('should resolve to a single NHLPlayer', async () => {
+        const results = await getPlayer({ id: playerId })
 
-        it('should include expanded team info if specified', async () => {
-            const result = await players.getById(testPlayer.id, { expandTeam: true })
+        expect(results).toEqual(
+            expect.objectContaining({
+                id: playerId,
+                fullName: 'Mitchell Marner',
+                link: `/api/v1/people/${playerId}`,
+            }),
+        )
+    })
 
-            validateExpanded.team(result.currentTeam)
-        })
+    it('should include expanded team info if specifed', async () => {
+        const results = await getPlayer({ id: playerId, expand: ['person.currentTeam'] })
 
-        it('should include other names if specified', async () => {
-            const result = await players.getById(testPlayer.id, { includeNames: true })
+        validateExpanded.team(results.currentTeam)
+    })
 
-            expect(result).toHaveProperty('otherNames')
-        })
+    it.each<[keyof NHLPlayer, PlayerExpand]>([
+        ['otherNames', 'person.names'],
+        ['social', 'person.social'],
+    ])('should include %s if specified', async (property, expand) => {
+        const results = await getPlayer({ id: playerId, expand: [expand] })
 
-        it('should include social media if specified', async () => {
-            const result = await players.getById(testPlayer.id, { includeSocials: true })
-
-            expect(result).toHaveProperty('social')
-        })
+        expect(results).toEqual(
+            expect.objectContaining({ [property]: expect.anything() }),
+        )
     })
 })

@@ -1,4 +1,4 @@
-import { NHLConference, NHLDivision, NHLFranchise, NHLTeam } from '../../src/types'
+import { NHLConference, NHLDivision, NHLFranchise, NHLPlayer, NHLTeam } from '../../src/types'
 
 /* each function validates that one property exists from the full version of its respective
  * object type. as long as that property is included, the expanded resource has been
@@ -16,13 +16,20 @@ function validateExpandedFranchise(franchise: NHLFranchise) {
     expect(franchise).toHaveProperty('firstSeasonId')
 }
 
+function validateExpandedPlayer(player: NHLPlayer) {
+    expect(player).toHaveProperty('firstName')
+}
+
 function validateExpandedTeam(team: NHLTeam) {
     expect(team).toHaveProperty('venue')
 }
 
-export const validateExpanded = {
+const validateExpanded: Record<string, Function> = {
     conference: validateExpandedConference,
     division: validateExpandedDivision,
     franchise: validateExpandedFranchise,
+    player: validateExpandedPlayer,
     team: validateExpandedTeam,
 }
+
+export default validateExpanded

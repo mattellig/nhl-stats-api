@@ -73,19 +73,22 @@ export interface NHLTeamStatRankings {
     shootingPctRank: string
 }
 
-export interface NHLTeamStats {
-    type: NHLStatsType
-    splits: [
-        {
-            stat: NHLTeamStatsSingleSeason
-            team: NHLTeam
-        },
-        {
-            stat: NHLTeamStatRankings
-            team: NHLTeam
-        }
-    ]
-}
+export type NHLTeamStats = [
+    {
+        type: NHLStatsType,
+        splits: [{
+            stat: NHLTeamStatsSingleSeason,
+            team: NHLTeam,
+        }],
+    },
+    {
+        type: NHLStatsType,
+        splits: [{
+            stat: NHLTeamStatRankings,
+            team: NHLTeam,
+        }]
+    },
+]
 
 export interface NHLTeam {
     id: number
@@ -101,8 +104,23 @@ export interface NHLTeam {
     division?: NHLDivision
     conference?: NHLConference
     franchise?: NHLFranchise
-    teamStats?: [NHLTeamStats]
-    roster?: NHLRosterPlayer[]
+    teamStats?: [
+        {
+            type: NHLStatsType,
+            splits: [{
+                stat: NHLTeamStatsSingleSeason,
+                team: NHLTeam,
+            }],
+        },
+        {
+            stat: NHLTeamStatRankings,
+            team: NHLTeam,
+        },
+    ]
+    roster?: {
+        roster: NHLRosterPlayer[]
+        link: string
+    }
     social?: NHLSocialMedia
     shortName?: string
     officialSiteUrl?: string

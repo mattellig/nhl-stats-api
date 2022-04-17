@@ -1,5 +1,5 @@
-import * as resources from './resources'
+import resources from './resources'
 
 export * from './types'
 
-export const nhlStatsApi = { ...resources }
+export default { ...resources }

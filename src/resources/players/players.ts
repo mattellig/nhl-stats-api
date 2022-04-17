@@ -1,38 +1,18 @@
-import { client } from '../../client/client';
-import { NHLPlayer } from '../../types';
+import { NHLPlayer } from '../../types'
+import client from '../../client/client'
 
-export interface PlayersConfig {
-    expandTeam?: boolean
-    includeNames?: boolean
-    includeSocials?: boolean
+export type PlayerExpand =
+    | 'person.currentTeam'
+    | 'person.names'
+    | 'person.social'
+
+export interface PlayerOptions {
+    expand?: PlayerExpand[]
+    id: number
 }
 
-async function getById(id: number, config: PlayersConfig = {}): Promise<NHLPlayer> {
-    const params = new URLSearchParams()
-
-    if (config.expandTeam || config.includeNames || config.includeSocials) {
-        const expand = []
-
-        if (config.expandTeam) {
-            expand.push('person.currentTeam')
-        }
-
-        if (config.includeNames) {
-            expand.push('person.names')
-        }
-
-        if (config.includeSocials) {
-            expand.push('person.social')
-        }
-
-        if (expand.length) {
-            params.set('expand', expand.join(','))
-        }
-    }
-
-    return (
-        await client.get<NHLPlayer[]>(`people/${id}`, params.toString())
-    ).people[0]
+function getPlayer(options: PlayerOptions): Promise<NHLPlayer> {
+    return client.get('people', options)
 }
 
-export const players = { getById }
+export default { getPlayer }

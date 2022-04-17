@@ -1,37 +1,38 @@
-import { mockDivisionData } from '../../../test/data'
-import { validateExpanded } from '../../../test/utils/validateExpanded'
-import { divisions } from './divisions'
+import validateExpanded from '../../../test/utils/validateExpanded'
+import divisions from './divisions'
 
-describe('divisions', () => {
-    describe('.getAll', () => {
-        it('should resolve to an array of NHLDivisions', async () => {
-            const results = await divisions.getAll()
+const divisionId = 17 // Atlantic Division
 
-            expect(results).toEqual(mockDivisionData)
-        })
+describe('getDivisions', () => {
+    const { getDivisions } = divisions
 
-        it('should include expanded conference info if specified', async () => {
-            const results = await divisions.getAll({ expandConference: true })
+    it('should resolve to an array of NHLDivisions', async () => {
+        const results = await getDivisions()
 
-            results.forEach((d) => validateExpanded.conference(d.conference))
-        })
+        expect(results).toContainEqual(
+            expect.objectContaining({
+                id: expect.anything(),
+                name: expect.anything(),
+                link: expect.stringContaining('/api/v1/divisions'),
+            }),
+        )
     })
 
-    describe('.getById', () => {
-        it('should resolve to a single NHLDivision', async () => {
-            const division = mockDivisionData[0]
+    it('should resolve to a single NHLDivision when an ID is specified', async () => {
+        const results = await getDivisions({ id: divisionId })
 
-            const result = await divisions.getById(division.id)
+        expect(results).toEqual(
+            expect.objectContaining({
+                id: divisionId,
+                name: 'Atlantic',
+                link: `/api/v1/divisions/${divisionId}`,
+            }),
+        )
+    })
 
-            expect(result).toEqual(division)
-        })
+    it('should include expanded conference info if specified', async () => {
+        const results = await getDivisions({ id: divisionId, expand: ['division.conference'] })
 
-        it('should include expanded conference info if specified', async () => {
-            const divisionId = mockDivisionData[0].id
-
-            const result = await divisions.getById(divisionId, { expandConference: true })
-
-            validateExpanded.conference(result.conference)
-        })
+        validateExpanded.conference(results.conference)
     })
 })
