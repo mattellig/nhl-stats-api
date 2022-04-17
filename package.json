@@ -12,29 +12,24 @@
   "author": "Matt Ellig",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rimraf dist && tsc && node esbuild.js",
     "lint": "eslint . --ext .ts",
-    "test": "jest",
-    "watch": "rollup -cw"
+    "test": "jest"
   },
   "dependencies": {
     "cross-fetch": "^3.1.5"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^21.0.3",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.2.0",
-    "@rollup/plugin-typescript": "^8.3.1",
     "@types/jest": "^27.4.1",
-    "@types/node": "^17.0.23",
+    "@types/node": "^17.0.24",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
+    "esbuild": "^0.14.36",
     "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^26.1.4",
     "jest": "^27.5.1",
-    "rollup": "^2.70.1",
     "ts-jest": "^27.1.4",
     "tslib": "^2.3.1",
     "typescript": "^4.6.3"

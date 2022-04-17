@@ -1,24 +1,18 @@
 {
     "compilerOptions": {
         "declaration": true,
-        "declarationDir": ".",
+        "declarationDir": "dist",
+        "emitDeclarationOnly": true,
         "esModuleInterop": true,
-        "lib": [
-            "ESNext"
-        ],
-        "module": "ES6",
-        "moduleResolution": "Node",
+        "module": "CommonJS",
         "noImplicitAny": true,
-        "outDir": "dist",
-        "target": "ES5"
+        "skipLibCheck": true,
+        "target": "ES2017"
     },
-    "include": [
-        "src/**/*"
-    ],
     "exclude": [
         "node_modules",
         "dist",
-        "src/**/*.test.ts",
+        "**/*.test.ts",
         "test"
     ]
 }

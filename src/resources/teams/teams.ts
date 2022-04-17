@@ -57,7 +57,7 @@ function getTeams(options: TeamOptions = {}): Promise<NHLTeam[] | NHLTeam> {
     let config = { ...options }
 
     if (config.expand) {
-        const expand = [...options.expand]
+        const expand = [...config.expand]
 
         if (!expand.includes('team.roster')) {
             const propsRequiringRoster = ['roster.person', 'person.names', 'person.social']
