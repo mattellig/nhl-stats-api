@@ -12,7 +12,7 @@
   "author": "Matt Ellig",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && tsc && node esbuild.js",
+    "build": "rimraf dist && tsc && node build.js",
     "lint": "eslint . --ext .ts",
     "test": "jest"
   },
