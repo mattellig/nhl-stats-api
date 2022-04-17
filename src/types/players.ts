@@ -1,3 +1,5 @@
+import { NHLConference } from './conferences'
+import { NHLDivision } from './divisions'
 import { NHLSocialMedia, NHLStatsType } from './shared'
 import { NHLTeam } from './teams'
 
@@ -16,33 +18,45 @@ export interface NHLPlayerOtherNames {
     firstLastNameRoman: string
 }
 
-export interface NHLPlayer {
-    id: number
-    fullName: string
-    link: string
+export interface NHLPlayerGoalsByGameSituation {
+    type: NHLStatsType
+    splits: [{
+        season: string
+        stat: {
+            goalsInFirstPeriod: number
+            goalsInSecondPeriod: number
+            goalsInThirdPeriod: number
+            goalsInOvertime: number
+            goalsTrailingByOne: number
+            goalsTrailingByTwo: number
+            goalsWhenTied: number
+            goalsLeadingByOne: number
+            goalsLeadingByTwo: number
+            goalsLeadingByThreePlus: number
+        }
+    }]
+}
 
-    // not always included/not in all resources that include players
-    firstName?: string
-    lastName?: string
-    primaryNumber?: string
-    birthDate?: string
-    currentAge?: number
-    birthCity?: string
-    birthStateProvince?: string
-    birthCountry?: string
-    nationality?: string
-    height?: string
-    weight?: number
-    active?: boolean
-    alternateCaptain?: boolean
-    captain?: boolean
-    rookie?: boolean
-    shootsCatches?: 'L' | 'R'
-    rosterStatus?: 'Y' | 'N' | 'I'
-    currentTeam?: NHLTeam
-    primaryPosition?: NHLPosition
-    social?: NHLSocialMedia
-    otherNames?: NHLPlayerOtherNames
+export interface NHLPlayerStatRankings {
+    type: NHLStatsType
+    splits: {
+        season: string
+        stat: {
+            rankPowerPlayGoals: string
+            rankBlockedShots: string
+            rankAssists: string
+            rankShotPct: string
+            rankGoals: string
+            rankHits: string
+            rankPenaltyMinutes: string
+            rankShortHandedGoals: string
+            rankPlusMinus: string
+            rankShots: string
+            rankPoints: string
+            rankOvertimeGoals: string
+            rankGamesPlayed: string
+        }
+    }[]
 }
 
 export interface NHLPlayerStats {
@@ -81,17 +95,60 @@ export interface NHLPlayerStats {
             powerPlayTimeOnIcePerGame?: string
         }
 
-        // not always included
-        team?: {
-            id?: number
-            name: string
+        // not always included - depends on the stat type requested
+        team?: NHLTeam
+        opponent?: NHLTeam
+        opponentDivision?: NHLDivision
+        opponentConference?: NHLConference
+        date?: string
+        dayOfWeek?: number
+        month?: number
+        isHome?: boolean
+        isWin?: boolean
+        isOT?: boolean
+        game?: {
+            gamePk: number
             link: string
+            content: {
+                link: string
+            }
         }
         league?: {
-            id?: number
             name: string
             link: string
+
+            // some other leagues have no ID
+            id?: number
         }
         sequenceNumber?: number
     }[]
+}
+
+export interface NHLPlayer {
+    id: number
+    fullName: string
+    link: string
+
+    // not always included/not in all resources that include players
+    firstName?: string
+    lastName?: string
+    primaryNumber?: string
+    birthDate?: string
+    currentAge?: number
+    birthCity?: string
+    birthStateProvince?: string
+    birthCountry?: string
+    nationality?: string
+    height?: string
+    weight?: number
+    active?: boolean
+    alternateCaptain?: boolean
+    captain?: boolean
+    rookie?: boolean
+    shootsCatches?: 'L' | 'R'
+    rosterStatus?: 'Y' | 'N' | 'I'
+    currentTeam?: NHLTeam
+    primaryPosition?: NHLPosition
+    social?: NHLSocialMedia
+    otherNames?: NHLPlayerOtherNames
 }
