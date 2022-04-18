@@ -13,6 +13,7 @@ export interface PlayerOptions {
 
 interface BasePlayerStatsOptions {
     id: number
+    season?: string
 }
 
 export interface PlayerStatsOptions extends BasePlayerStatsOptions {
