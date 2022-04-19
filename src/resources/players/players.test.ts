@@ -1,5 +1,5 @@
 import validateExpanded from '../../../test/utils/validateExpanded'
-import { NHLGoalsByGameSituationStatTypeName, NHLPlayer, NHLRankingsStatTypeName, NHLStatTypeName } from '../../types'
+import { NHLPlayer } from '../../types'
 import players, { PlayerExpand } from './players'
 
 const playerId = 8478483 // Mitchell Marner
@@ -40,32 +40,8 @@ describe('getPlayer', () => {
 describe('getPlayerStats', () => {
     const { getPlayerStats } = players
 
-    it.each<NHLStatTypeName>([
-        'yearByYear',
-        'yearByYearPlayoffs',
-        'careerRegularSeason',
-        'careerPlayoffs',
-        'gameLog',
-        'playoffGameLog',
-        'vsTeam',
-        'vsTeamPlayoffs',
-        'vsDivision',
-        'vsDivisionPlayoffs',
-        'vsConference',
-        'vsConferencePlayoffs',
-        'byMonth',
-        'byMonthPlayoffs',
-        'byDayOfWeek',
-        'byDayOfWeekPlayoffs',
-        'homeAndAway',
-        'homeAndAwayPlayoffs',
-        'winLoss',
-        'winLossPlayoffs',
-        'onPaceRegularSeason',
-        'statsSingleSeason',
-        'statsSingleSeasonPlayoffs',
-    ])('should resolve to an array of NHLPlayerStats with %s stat type', async (type) => {
-        const results = await getPlayerStats({ id: playerId, stats: type })
+    it('should resolve to an array of NHLPlayerStats with the correct stat type', async () => {
+        const results = await getPlayerStats({ id: playerId, stats: 'statsSingleSeason' })
 
         expect(results).toContainEqual(
             expect.objectContaining({
@@ -75,13 +51,8 @@ describe('getPlayerStats', () => {
         )
     })
 
-    it.each<NHLRankingsStatTypeName>([
-        'yearByYearRank',
-        'yearByYearPlayoffsRank',
-        'regularSeasonStatRankings',
-        'playoffStatRankings',
-    ])('should resolve to an array of NHLPlayerStatRankings with %s stat type', async (type) => {
-        const results = await getPlayerStats({ id: playerId, stats: type })
+    it('should resolve to an array of NHLPlayerStatRankings with the correct stat type', async () => {
+        const results = await getPlayerStats({ id: playerId, stats: 'regularSeasonStatRankings' })
 
         expect(results).toContainEqual(
             expect.objectContaining({
@@ -91,11 +62,8 @@ describe('getPlayerStats', () => {
         )
     })
 
-    it.each<NHLGoalsByGameSituationStatTypeName>([
-        'goalsByGameSituation',
-        'goalsByGameSituationPlayoffs',
-    ])('should resolve to a single NHLPlayerGoalsByGameSituation with %s stat type', async (type) => {
-        const results = await getPlayerStats({ id: playerId, stats: type })
+    it('should resolve to a single NHLPlayerGoalsByGameSituation with the correct stat type', async () => {
+        const results = await getPlayerStats({ id: playerId, stats: 'goalsByGameSituation' })
 
         expect(results).toHaveLength(1)
         expect(results).toContainEqual(
