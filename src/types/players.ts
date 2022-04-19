@@ -42,19 +42,31 @@ export interface NHLPlayerStatRankings {
     splits: {
         season: string
         stat: {
-            rankPowerPlayGoals: string
-            rankBlockedShots: string
-            rankAssists: string
-            rankShotPct: string
-            rankGoals: string
-            rankHits: string
-            rankPenaltyMinutes: string
-            rankShortHandedGoals: string
-            rankPlusMinus: string
-            rankShots: string
-            rankPoints: string
-            rankOvertimeGoals: string
-            rankGamesPlayed: string
+            rankPowerPlayGoals?: string
+            rankBlockedShots?: string
+            rankAssists?: string
+            rankShotPct?: string
+            rankGoals?: string
+            rankHits?: string
+            rankPenaltyMinutes?: string
+            rankShortHandedGoals?: string
+            rankPlusMinus?: string
+            rankShots?: string
+            rankPoints?: string
+            rankOvertimeGoals?: string
+            rankGamesPlayed?: string
+            shotsAgainst?: string
+            ot?: string
+            penaltyMinutes?: string
+            timeOnIce?: string
+            shutOuts?: string
+            saves?: string
+            losses?: string
+            goalsAgainst?: string
+            savePercentage?: string
+            games?: string
+            goalsAgainstAverage?: string
+            wins?: string
         }
     }[]
 }
@@ -64,16 +76,16 @@ export interface NHLPlayerStats {
     splits: {
         season: string
         stat: {
-            assists: number
-            goals: number
-            pim: number
             games: number
-            penaltyMinutes: string
-            plusMinus: number
-            points: number
 
             // not always included
             timeOnIce?: string
+            assists?: number
+            goals?: number
+            pim?: number
+            penaltyMinutes?: string
+            plusMinus?: number
+            points?: number
             shots?: number
             hits?: number
             powerPlayGoals?: number
@@ -93,6 +105,26 @@ export interface NHLPlayerStats {
             evenTimeOnIcePerGame?: string
             shortHandedTimeOnIcePerGame?: string
             powerPlayTimeOnIcePerGame?: string
+            ot?: number
+            shutouts?: number
+            ties?: number
+            wins?: number
+            losses?: number
+            saves?: number
+            powerPlaySaves?: number
+            shortHandedSaves?: number
+            evenSaves?: number
+            shortHandedShots?: number
+            evenShots?: number
+            powerPlayShots?: number
+            savePercentage?: number
+            goalsAgainstAverage?: number
+            gamesStarted?: number
+            shotsAgainst?: number
+            goalsAgainst?: number
+            powerPlaySavePercentage?: number
+            shortHandedSavePercentage?: number
+            evenStrengthSavePercentage?: number
         }
 
         // not always included - depends on the stat type requested
