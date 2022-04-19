@@ -34,19 +34,19 @@ type AllPlayerStatOptions =
     | PlayerGoalsByGameSituationOptions
 
 type PlayerStatsReturnType =
-    | NHLPlayerStats
-    | NHLPlayerStatRankings
-    | NHLPlayerGoalsByGameSituation
+    | NHLPlayerStats[]
+    | NHLPlayerStatRankings[]
+    | NHLPlayerGoalsByGameSituation[]
 
 function getPlayer(options: PlayerOptions): Promise<NHLPlayer> {
     return client.get('people', options)
 }
 
-function getPlayerStats(options: PlayerStatsOptions): Promise<NHLPlayerStats>
-function getPlayerStats(options: PlayerStatRankingsOptions): Promise<NHLPlayerStatRankings>
+function getPlayerStats(options: PlayerStatsOptions): Promise<NHLPlayerStats[]>
+function getPlayerStats(options: PlayerStatRankingsOptions): Promise<NHLPlayerStatRankings[]>
 function getPlayerStats(
     options: PlayerGoalsByGameSituationOptions,
-): Promise<NHLPlayerGoalsByGameSituation>
+): Promise<NHLPlayerGoalsByGameSituation[]>
 
 function getPlayerStats(options: AllPlayerStatOptions): Promise<PlayerStatsReturnType> {
     return client.get('people', options, 'stats')
