@@ -63,9 +63,12 @@ nhlStatsApi
  - [getFranchises](#getfranchises)
  - [getPlayer](#getplayer)
  - [getPlayerStats](#getplayerstats)
- - [getTeam](#getteam)
+ - [getSeasons](#getseasons)
+ - [getTeams](#getteams)
  - [getTeamRoster](#getteamroster)
  - [getTeamStats](#getteamstats)
+
+------------
 
 ### getConferences
 
@@ -75,6 +78,8 @@ By default, returns a list of all active conferences. You can specify an ID to g
 nhlStatsApi.getConferences(); // returns conferences array
 nhlStatsApi.getConferences({ id: 6 }); // returns single conference
 ```
+
+------------
 
 ### getDivisions
 
@@ -97,6 +102,8 @@ nhlStatsApi.getDivisions({ id: 17 }); // returns single division
  
   - `division.conference`
 
+------------
+
 ### getFranchises
 
 By default, returns a list of all franchises. You can specify an ID to get a single franchise instead.
@@ -105,6 +112,8 @@ By default, returns a list of all franchises. You can specify an ID to get a sin
 nhlStatsApi.getFranchises(); // returns franchises array
 nhlStatsApi.getFranchises({ id: 1 }); // returns single franchise
 ```
+
+------------
 
 ### getPlayer
 
@@ -127,6 +136,8 @@ nhlStatsApi.getPlayer({ id: 8478483 });
   - `person.currentTeam`
   - `person.names`
   - `person.social`
+
+------------
 
 ### getPlayerStats
 
@@ -170,6 +181,7 @@ nhlStatsApi.getPlayerStats({ id: 8478483, stats: 'statsSingleSeason' });
   - `yearByYearPlayoffs`
   - `yearByYearPlayoffsRank`
 
+
  - `season`: Specifies which NHL season the stats come from. If not set, this will always be the current season of play. Note that this does not affect all stat types (e.g. `yearByYear`, etc.).
  
  ```js
@@ -180,7 +192,21 @@ nhlStatsApi.getPlayerStats({ id: 8478483, stats: 'statsSingleSeason' });
  });
  ```
 
-### getTeam
+------------
+
+### getSeasons
+
+By default, returns a list of all NHL seasons. You can specify an ID to get a single season instead. Alternatively, you can use "current" as the ID to get information on the current season of play.
+
+```js
+nhlStatsApi.getSeasons(); // returns seasons array
+nhlStatsApi.getSeasons({ id: '19921993' }); // returns single season
+nhlStatsApi.getSeasons({ id: 'current' }); // returns single season
+```
+
+------------
+
+### getTeams
 
 By default, returns a list of all active teams. You can specify an ID to get a single team instead.
 
@@ -211,6 +237,7 @@ nhlStatsApi.getTeams({ id: 10 }); // returns single team
   - `team.social`
   - `team.stats` (see also: [getTeamStats](#getteamstats))
 
+
  - `rosterType`: If incuding the team's roster (via `expand`), specifies which type of roster the results should include.
 
  ```js
@@ -222,11 +249,14 @@ nhlStatsApi.getTeams({ id: 10 }); // returns single team
   - `active` (default)
   - `fullRoster`
 
+
 - `season`: Specifies which NHL season the team data should come from. If not set, this will always be the current season of play. Affects things like record, roster, stats, etc. (all included via `expand`).
  
  ```js
  nhlStatsApi.getTeams({ expand: ['team.record'], season: '19661967' });
  ```
+
+------------
 
 ### getTeamRoster
 
@@ -250,6 +280,7 @@ nhlStatsApi.getTeamRoster({ id: 10 });
   - `person.names`
   - `person.social`
 
+
 - `rosterType`: Specifies which type of roster to return.
  
  ```js
@@ -261,11 +292,14 @@ nhlStatsApi.getTeamRoster({ id: 10 });
   - `active` (default)
   - `fullRoster`
 
+
 - `season`: Specifies which NHL season the roster should come from. If not set, this will always be the current season of play.
  
  ```js
  nhlStatsApi.getTeamRoster({ id: 10, season: '19661967' });
  ```
+
+------------
 
 ### getTeamStats
 
@@ -287,11 +321,14 @@ nhlStatsApi.getTeamStats({ id: 10 });
  
   - `stats.team`
  
+ 
 - `season`: Specifies which NHL season the stats should come from. If not set, this will always be the current season of play.
  
  ```js
  nhlStatsApi.getTeamStats({ id: 10, season: '19661967' });
  ```
+
+------------
 
 ### Finding a player's ID
 
