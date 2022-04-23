@@ -118,7 +118,7 @@ export interface NHLPlayerStats {
             evenShots?: number
             powerPlayShots?: number
             savePercentage?: number
-            goalsAgainstAverage?: number
+            goalAgainstAverage?: number
             gamesStarted?: number
             shotsAgainst?: number
             goalsAgainst?: number
