@@ -1,55 +1,55 @@
-import { NHLGoalsByGameSituationStatTypeName, NHLPlayer, NHLPlayerGoalsByGameSituation, NHLPlayerStatRankings, NHLPlayerStats, NHLRankingsStatTypeName, NHLStatTypeName } from '../../types'
-import client from '../../client/client'
+import { NHLGoalsByGameSituationStatTypeName, NHLPlayer, NHLPlayerGoalsByGameSituation, NHLPlayerStatRankings, NHLPlayerStats, NHLRankingsStatTypeName, NHLStatTypeName } from '../../types';
+import client from '../../client/client';
 
 export type PlayerExpand =
     | 'person.currentTeam'
     | 'person.names'
-    | 'person.social'
+    | 'person.social';
 
 export interface PlayerOptions {
-    expand?: PlayerExpand[]
-    id: number
+    expand?: PlayerExpand[];
+    id: number;
 }
 
 interface BasePlayerStatsOptions {
-    id: number
-    season?: string
+    id: number;
+    season?: string;
 }
 
 export interface PlayerStatsOptions extends BasePlayerStatsOptions {
-    stats: Omit<NHLStatTypeName, NHLRankingsStatTypeName | NHLGoalsByGameSituationStatTypeName>
+    stats: Omit<NHLStatTypeName, NHLRankingsStatTypeName | NHLGoalsByGameSituationStatTypeName>;
 }
 
 export interface PlayerStatRankingsOptions extends BasePlayerStatsOptions {
-    stats: NHLRankingsStatTypeName
+    stats: NHLRankingsStatTypeName;
 }
 
 export interface PlayerGoalsByGameSituationOptions extends BasePlayerStatsOptions {
-    stats: NHLGoalsByGameSituationStatTypeName
+    stats: NHLGoalsByGameSituationStatTypeName;
 }
 
 type AllPlayerStatOptions =
     | PlayerStatsOptions
     | PlayerStatRankingsOptions
-    | PlayerGoalsByGameSituationOptions
+    | PlayerGoalsByGameSituationOptions;
 
 type PlayerStatsReturnType =
     | NHLPlayerStats[]
     | NHLPlayerStatRankings[]
-    | NHLPlayerGoalsByGameSituation[]
+    | NHLPlayerGoalsByGameSituation[];
 
 function getPlayer(options: PlayerOptions): Promise<NHLPlayer> {
-    return client.get('people', options)
+    return client.get('people', options);
 }
 
-function getPlayerStats(options: PlayerStatsOptions): Promise<NHLPlayerStats[]>
-function getPlayerStats(options: PlayerStatRankingsOptions): Promise<NHLPlayerStatRankings[]>
+function getPlayerStats(options: PlayerStatsOptions): Promise<NHLPlayerStats[]>;
+function getPlayerStats(options: PlayerStatRankingsOptions): Promise<NHLPlayerStatRankings[]>;
 function getPlayerStats(
     options: PlayerGoalsByGameSituationOptions,
-): Promise<NHLPlayerGoalsByGameSituation[]>
+): Promise<NHLPlayerGoalsByGameSituation[]>;
 
 function getPlayerStats(options: AllPlayerStatOptions): Promise<PlayerStatsReturnType> {
-    return client.get('people', options, 'stats')
+    return client.get('people', options, 'stats');
 }
 
-export default { getPlayer, getPlayerStats }
+export default { getPlayer, getPlayerStats };

@@ -1,15 +1,15 @@
-import client from '../../client/client'
-import { NHLConference } from '../../types'
+import client from '../../client/client';
+import { NHLConference } from '../../types';
 
 export interface ConferenceOptions {
-    id: number
+    id: number;
 }
 
-function getConferences(options?: never): Promise<NHLConference[]>
-function getConferences(options?: ConferenceOptions): Promise<NHLConference>
+function getConferences(options?: never): Promise<NHLConference[]>;
+function getConferences(options?: ConferenceOptions): Promise<NHLConference>;
 
 function getConferences(options?: ConferenceOptions): Promise<NHLConference[] | NHLConference> {
-    return client.get('conferences', options)
+    return client.get('conferences', options);
 }
 
-export default { getConferences }
+export default { getConferences };

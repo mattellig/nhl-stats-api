@@ -1,5 +1,5 @@
-import resources from './resources'
+import resources from './resources';
 
-export * from './types'
+export * from './types';
 
-export default { ...resources }
+export default { ...resources };

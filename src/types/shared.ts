@@ -1,24 +1,24 @@
 export interface NHLSocialMedia {
-    twitter?: string[]
-    facebook?: string[]
-    instagram?: string[]
-    vine?: string[]
-    periscope?: string[]
-    youtube?: string[]
-    pinterest?: string[]
-    googleplus?: string[]
-    snapchat?: string[]
+    twitter?: string[];
+    facebook?: string[];
+    instagram?: string[];
+    vine?: string[];
+    periscope?: string[];
+    youtube?: string[];
+    pinterest?: string[];
+    googleplus?: string[];
+    snapchat?: string[];
 }
 
 export type NHLRankingsStatTypeName =
     | 'yearByYearRank'
     | 'yearByYearPlayoffsRank'
     | 'regularSeasonStatRankings'
-    | 'playoffStatRankings'
+    | 'playoffStatRankings';
 
 export type NHLGoalsByGameSituationStatTypeName =
     | 'goalsByGameSituation'
-    | 'goalsByGameSituationPlayoffs'
+    | 'goalsByGameSituationPlayoffs';
 
 export type NHLStatTypeName =
     | NHLRankingsStatTypeName
@@ -45,28 +45,28 @@ export type NHLStatTypeName =
     | 'winLossPlayoffs'
     | 'onPaceRegularSeason'
     | 'statsSingleSeason'
-    | 'statsSingleSeasonPlayoffs'
+    | 'statsSingleSeasonPlayoffs';
 
 export interface NHLSingleSeasonStatType {
-    displayName: 'statsSingleSeason'
+    displayName: 'statsSingleSeason';
     gameType: {
-        id: 'R'
-        description: 'Regular season'
-        postseason: false
-    }
+        id: 'R';
+        description: 'Regular season';
+        postseason: false;
+    };
 }
 
 export type NHLStatsType =
     | NHLSingleSeasonStatType
     | {
-        displayName: 'statsSingleSeasonPlayoffs'
+        displayName: 'statsSingleSeasonPlayoffs';
         gameType: {
-            id: 'P'
-            description: 'Playoffs'
-            postseason: true
-        }
+            id: 'P';
+            description: 'Playoffs';
+            postseason: true;
+        };
     }
     | {
-        displayName: Omit<NHLStatTypeName, 'statsSingleSeason' | 'statsSingleSeasonPlayoffs'>
-        gameType: null
-    }
+        displayName: Omit<NHLStatTypeName, 'statsSingleSeason' | 'statsSingleSeasonPlayoffs'>;
+        gameType: null;
+    };

@@ -1,10 +1,10 @@
-import conferences from './conferences'
+import conferences from './conferences';
 
 describe('getConferences', () => {
-    const { getConferences } = conferences
+    const { getConferences } = conferences;
 
     it('should resolve to an array of NHLConferences', async () => {
-        const results = await getConferences()
+        const results = await getConferences();
 
         expect(results).toContainEqual(
             expect.objectContaining({
@@ -12,13 +12,13 @@ describe('getConferences', () => {
                 name: expect.anything(),
                 link: expect.stringContaining('/api/v1/conferences'),
             }),
-        )
-    })
+        );
+    });
 
     it('should resolve to a single NHLConference when an ID is specified', async () => {
-        const conferenceId = 6 // Eastern Conference
+        const conferenceId = 6; // Eastern Conference
 
-        const results = await getConferences({ id: conferenceId })
+        const results = await getConferences({ id: conferenceId });
 
         expect(results).toEqual(
             expect.objectContaining({
@@ -26,6 +26,6 @@ describe('getConferences', () => {
                 name: 'Eastern',
                 link: `/api/v1/conferences/${conferenceId}`,
             }),
-        )
-    })
-})
+        );
+    });
+});

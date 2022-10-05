@@ -1,10 +1,10 @@
-import seasons from './seasons'
+import seasons from './seasons';
 
 describe('getSeasons', () => {
-    const { getSeasons } = seasons
+    const { getSeasons } = seasons;
 
     it('should resolve to an array of NHLSeasons', async () => {
-        const results = await getSeasons()
+        const results = await getSeasons();
 
         expect(results).toContainEqual(
             expect.objectContaining({
@@ -19,13 +19,13 @@ describe('getSeasons', () => {
                 divisionsInUse: expect.anything(),
                 wildCardInUse: expect.anything(),
             }),
-        )
-    })
+        );
+    });
 
     it('should resolve to a single NHLSeason when an ID is specified', async () => {
-        const seasonId = '20212022'
+        const seasonId = '20212022';
 
-        const results = await getSeasons({ id: seasonId })
+        const results = await getSeasons({ id: seasonId });
 
         expect(results).toEqual({
             regularSeasonStartDate: '2021-10-12',
@@ -38,11 +38,11 @@ describe('getSeasons', () => {
             divisionsInUse: true,
             wildCardInUse: true,
             seasonId,
-        })
-    })
+        });
+    });
 
     it('should resolve to a single NHLSeason when the current season is requested', async () => {
-        const results = await getSeasons({ id: 'current' })
+        const results = await getSeasons({ id: 'current' });
 
         expect(results).toEqual(
             expect.objectContaining({
@@ -57,6 +57,6 @@ describe('getSeasons', () => {
                 divisionsInUse: expect.anything(),
                 wildCardInUse: expect.anything(),
             }),
-        )
-    })
-})
+        );
+    });
+});
