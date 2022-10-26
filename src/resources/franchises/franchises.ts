@@ -1,15 +1,17 @@
-import client from '../../client/client';
-import { NHLFranchise } from '../../types';
+import client from "../../client/client";
+import { NHLFranchise } from "../../types";
 
 export interface FranchiseOptions {
-    id: number;
+  id: number;
 }
 
 function getFranchises(options?: never): Promise<NHLFranchise[]>;
 function getFranchises(options: FranchiseOptions): Promise<NHLFranchise>;
 
-function getFranchises(options?: FranchiseOptions): Promise<NHLFranchise[] | NHLFranchise> {
-    return client.get('franchises', options);
+function getFranchises(
+  options?: FranchiseOptions
+): Promise<NHLFranchise[] | NHLFranchise> {
+  return client.get("franchises", options);
 }
 
 export default { getFranchises };

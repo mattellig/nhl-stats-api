@@ -1,18 +1,13 @@
 {
-    "compilerOptions": {
-        "declaration": true,
-        "declarationDir": "dist",
-        "emitDeclarationOnly": true,
-        "esModuleInterop": true,
-        "module": "CommonJS",
-        "noImplicitAny": true,
-        "skipLibCheck": true,
-        "target": "ES2017"
-    },
-    "exclude": [
-        "node_modules",
-        "dist",
-        "**/*.test.ts",
-        "test"
-    ]
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "target": "ES2017"
+  },
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "utils"]
 }
