@@ -7,7 +7,7 @@
     "module": "CommonJS",
     "noImplicitAny": true,
     "skipLibCheck": true,
-    "target": "ES2017"
+    "target": "ES2019"
   },
   "exclude": ["node_modules", "dist", "**/*.test.ts", "utils"]
 }

@@ -1,4 +1,5 @@
 const { build } = require("esbuild");
+
 const pkg = require("./package.json");
 
 const sharedConfig = {
