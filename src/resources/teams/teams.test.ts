@@ -71,8 +71,8 @@ describe("getTeams", () => {
       rosterType: "fullRoster",
     });
 
-    expect(fullRosterResults.roster.roster.length).toBeGreaterThan(
-      activeRosterResults.roster.roster.length
+    expect(fullRosterResults.roster?.roster.length).toBeGreaterThan(
+      activeRosterResults.roster?.roster.length || 0
     );
   });
 
@@ -82,7 +82,7 @@ describe("getTeams", () => {
       expand: ["team.roster", "roster.person"],
     });
 
-    validateExpanded.player(results.roster.roster[0].person);
+    validateExpanded.player(results.roster?.roster[0].person);
   });
 
   it.each<TeamExpand>(["roster.person", "person.names", "person.social"])(
@@ -107,7 +107,7 @@ describe("getTeams", () => {
         expand: ["team.roster", "roster.person", expand],
       });
 
-      expect(results.roster.roster[0].person).toEqual(
+      expect(results.roster?.roster[0].person).toEqual(
         expect.objectContaining({ [property]: expect.anything() })
       );
     }
@@ -121,7 +121,7 @@ describe("getTeams", () => {
         expand: ["team.roster", expand],
       });
 
-      validateExpanded.player(results.roster.roster[0].person);
+      validateExpanded.player(results.roster?.roster[0].person);
     }
   );
 });

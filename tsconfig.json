@@ -1,13 +1,15 @@
 {
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "dist",
-    "emitDeclarationOnly": true,
     "esModuleInterop": true,
-    "module": "CommonJS",
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "moduleResolution": "node",
     "noImplicitAny": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
-    "target": "ES2017"
-  },
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "utils"]
+    "strict": true,
+    "target": "ES2019"
+  }
 }
