@@ -1,5 +1,9 @@
-import resources from "./resources";
+import { conferences, divisions } from "./resources";
 
-export * from "./types";
+export type { NHLConference, NHLDivision } from "./types";
+export { NHLStatsError } from "./utils";
 
-export default { ...resources };
+export const nhlStatsApi = {
+  ...conferences,
+  ...divisions,
+};

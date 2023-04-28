@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["src/**/*.test.ts", "utils"],
+  "exclude": ["**/*.test.ts", "mocks", "src-old", "test", "utils"],
   "compilerOptions": {
     "declaration": true,
     "emitDeclarationOnly": true,
