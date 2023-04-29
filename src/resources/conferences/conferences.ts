@@ -1,17 +1,15 @@
-import client from "../../client/client";
-import { NHLConference } from "../../types";
+import type { NHLConference } from "../../types";
+import { fetchNHLStats, type BaseOptions } from "../../utils";
 
-export interface ConferenceOptions {
-  id: number;
+export function getConferences(
+  options?: BaseOptions
+): Promise<NHLConference[]> {
+  return fetchNHLStats<NHLConference[]>("conferences", options);
 }
 
-function getConferences(options?: never): Promise<NHLConference[]>;
-function getConferences(options?: ConferenceOptions): Promise<NHLConference>;
-
-function getConferences(
-  options?: ConferenceOptions
-): Promise<NHLConference[] | NHLConference> {
-  return client.get("conferences", options);
+export function getConferenceById(
+  id: number,
+  options?: BaseOptions
+): Promise<NHLConference> {
+  return fetchNHLStats("conferences", { ...options, id });
 }
-
-export default { getConferences };

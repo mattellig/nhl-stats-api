@@ -1,5 +1,51 @@
-import resources from "./resources";
+import {
+  conferences,
+  divisions,
+  franchises,
+  people,
+  seasons,
+  teams,
+} from "./resources";
 
-export * from "./types";
+export type {
+  NHLBaseConferenceDivisionOrTeam,
+  NHLConference,
+  NHLDivision,
+  NHLFranchise,
+  NHLGoalieStatRankings,
+  NHLGoalieStats,
+  NHLPlayer,
+  NHLPlayerCareerStats,
+  NHLPlayerGoalsByGameSituation,
+  NHLPlayerHomeAndAwayStats,
+  NHLPlayerSingleSeasonStats,
+  NHLPlayerStatRankings,
+  NHLPlayerStatsByDayOfWeek,
+  NHLPlayerStatsByMonth,
+  NHLPlayerStatsGameLog,
+  NHLPlayerStatsType,
+  NHLPlayerStatsVsConference,
+  NHLPlayerStatsVsDivision,
+  NHLPlayerStatsVsTeam,
+  NHLPlayerWinLossStats,
+  NHLPlayerYearByYearStats,
+  NHLPosition,
+  NHLRosterPlayer,
+  NHLSeason,
+  NHLSkaterStatRankings,
+  NHLSkaterStats,
+  NHLTeam,
+  NHLTeamRegularSeasonStatRankings,
+  NHLTeamStats,
+  NHLTeamStatsSingleSeason,
+} from "./types";
+export { NHLStatsError } from "./utils";
 
-export default { ...resources };
+export const nhlStatsApi = {
+  ...conferences,
+  ...divisions,
+  ...franchises,
+  ...people,
+  ...seasons,
+  ...teams,
+};

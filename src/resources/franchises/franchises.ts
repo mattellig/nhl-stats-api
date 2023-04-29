@@ -1,17 +1,13 @@
-import client from "../../client/client";
-import { NHLFranchise } from "../../types";
+import type { NHLFranchise } from "../../types";
+import { fetchNHLStats, type BaseOptions } from "../../utils";
 
-export interface FranchiseOptions {
-  id: number;
+export function getFranchises(options?: BaseOptions): Promise<NHLFranchise[]> {
+  return fetchNHLStats("franchises", options);
 }
 
-function getFranchises(options?: never): Promise<NHLFranchise[]>;
-function getFranchises(options: FranchiseOptions): Promise<NHLFranchise>;
-
-function getFranchises(
-  options?: FranchiseOptions
-): Promise<NHLFranchise[] | NHLFranchise> {
-  return client.get("franchises", options);
+export function getFranchiseById(
+  id: number,
+  options?: BaseOptions
+): Promise<NHLFranchise> {
+  return fetchNHLStats("franchises", { ...options, id });
 }
-
-export default { getFranchises };

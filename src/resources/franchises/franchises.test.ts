@@ -1,31 +1,22 @@
-import franchises from "./franchises";
+import { mockFranchises } from "../../../mocks/data";
+import { getFranchiseById, getFranchises } from "./franchises";
 
-describe("getFranchises", () => {
-  const { getFranchises } = franchises;
+describe("franchises", () => {
+  describe("getFranchises", () => {
+    it("should resolve to an array of NHLFranchises", async () => {
+      const results = await getFranchises();
 
-  it("should resolve to an array of NHLFranchises", async () => {
-    const results = await getFranchises();
-
-    expect(results).toContainEqual(
-      expect.objectContaining({
-        franchiseId: expect.anything(),
-        teamName: expect.anything(),
-        link: expect.stringContaining("/api/v1/franchises"),
-      })
-    );
+      expect(results).toEqual(mockFranchises);
+    });
   });
 
-  it("should resolve to a single NHLFranchise when an ID is specified", async () => {
-    const franchiseId = 1; // Canadiens Franchise
+  describe("getFranchiseById", () => {
+    it("should resolve to a single NHLFranchise", async () => {
+      const target = mockFranchises[0];
 
-    const results = await getFranchises({ id: franchiseId });
+      const results = await getFranchiseById(target.franchiseId);
 
-    expect(results).toEqual(
-      expect.objectContaining({
-        teamName: "Canadiens",
-        link: `/api/v1/franchises/${franchiseId}`,
-        franchiseId,
-      })
-    );
+      expect(results).toEqual(target);
+    });
   });
 });

@@ -1,10 +1,9 @@
 export interface NHLFranchise {
   franchiseId: number;
+  firstSeasonId: number;
+  lastSeasonId?: number;
+  mostRecentTeamId: number;
   teamName: string;
+  locationName: string;
   link: string;
-
-  // not always included/not in all resources that include franchises
-  firstSeasonId?: number;
-  mostRecentTeamId?: number;
-  locationName?: string;
 }

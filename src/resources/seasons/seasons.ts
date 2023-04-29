@@ -1,17 +1,13 @@
-import client from "../../client/client";
-import { NHLSeason } from "../../types";
+import type { NHLSeason } from "../../types";
+import { fetchNHLStats, type BaseOptions } from "../../utils";
 
-export interface SeasonOptions {
-  id: "current" | string;
+export function getSeasons(options?: BaseOptions): Promise<NHLSeason[]> {
+  return fetchNHLStats("seasons", options);
 }
 
-function getSeasons(options?: never): Promise<NHLSeason[]>;
-function getSeasons(options: SeasonOptions): Promise<NHLSeason>;
-
-async function getSeasons(
-  options?: SeasonOptions
-): Promise<NHLSeason[] | NHLSeason> {
-  return client.get("seasons", options);
+export function getSeasonById(
+  id: "current" | string | number,
+  options?: BaseOptions
+): Promise<NHLSeason> {
+  return fetchNHLStats("seasons", { ...options, id });
 }
-
-export default { getSeasons };

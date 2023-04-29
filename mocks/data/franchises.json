@@ -1,0 +1,50 @@
+[
+  {
+    "franchiseId": 1,
+    "firstSeasonId": 19171918,
+    "mostRecentTeamId": 8,
+    "teamName": "Canadiens",
+    "locationName": "Montréal",
+    "link": "/api/v1/franchises/1"
+  },
+  {
+    "franchiseId": 5,
+    "firstSeasonId": 19171918,
+    "mostRecentTeamId": 10,
+    "teamName": "Maple Leafs",
+    "locationName": "Toronto",
+    "link": "/api/v1/franchises/5"
+  },
+  {
+    "franchiseId": 6,
+    "firstSeasonId": 19241925,
+    "mostRecentTeamId": 6,
+    "teamName": "Bruins",
+    "locationName": "Boston",
+    "link": "/api/v1/franchises/6"
+  },
+  {
+    "franchiseId": 10,
+    "firstSeasonId": 19261927,
+    "mostRecentTeamId": 3,
+    "teamName": "Rangers",
+    "locationName": "New York",
+    "link": "/api/v1/franchises/10"
+  },
+  {
+    "franchiseId": 11,
+    "firstSeasonId": 19261927,
+    "mostRecentTeamId": 16,
+    "teamName": "Blackhawks",
+    "locationName": "Chicago",
+    "link": "/api/v1/franchises/11"
+  },
+  {
+    "franchiseId": 12,
+    "firstSeasonId": 19261927,
+    "mostRecentTeamId": 17,
+    "teamName": "Red Wings",
+    "locationName": "Detroit",
+    "link": "/api/v1/franchises/12"
+  }
+]

@@ -1,29 +1,16 @@
-import client from "../../client/client";
-import { NHLDivision } from "../../types";
+import type { NHLDivision } from "../../types";
+import { fetchNHLStats, type BaseOptions } from "../../utils";
 
-export type DivisionExpand = "division.conference";
+// unused but available `expand` values:
+// - "division.conference"
 
-interface BaseDivisionOptions {
-  expand?: DivisionExpand[];
+export function getDivisions(options?: BaseOptions): Promise<NHLDivision[]> {
+  return fetchNHLStats("divisions", options);
 }
 
-export interface SingleDivisionOptions extends BaseDivisionOptions {
-  id: number;
+export function getDivisionById(
+  id: number,
+  options?: BaseOptions
+): Promise<NHLDivision> {
+  return fetchNHLStats("divisions", { ...options, id });
 }
-
-export interface MultiDivisionOptions extends BaseDivisionOptions {
-  id?: never;
-}
-
-export type DivisionOptions = SingleDivisionOptions | MultiDivisionOptions;
-
-function getDivisions(options?: MultiDivisionOptions): Promise<NHLDivision[]>;
-function getDivisions(options: SingleDivisionOptions): Promise<NHLDivision>;
-
-function getDivisions(
-  options?: DivisionOptions
-): Promise<NHLDivision[] | NHLDivision> {
-  return client.get("divisions", options);
-}
-
-export default { getDivisions };

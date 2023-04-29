@@ -1,16 +1,11 @@
-import { NHLConference } from "./conferences";
+import type { NHLBaseConferenceDivisionOrTeam } from "./common";
 
-export interface NHLDivision {
-  link: string;
-
-  /* some divisions do not have this information, especially older divisions included with
-   * other resources */
-  id?: number;
-  name?: string;
-  nameShort?: string;
-  abbreviation?: string;
-
-  // not always included/not in all resources that include divisions
-  conference?: NHLConference;
-  active?: boolean;
+export interface NHLDivision extends NHLBaseConferenceDivisionOrTeam {
+  abbreviation: string;
+  conference: NHLBaseConferenceDivisionOrTeam & {
+    abbreviation?: string;
+    shortName?: string;
+    active?: boolean;
+  };
+  active: boolean;
 }

@@ -2,6 +2,7 @@
   "include": ["**/*.ts"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
+    "types": ["jest"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,

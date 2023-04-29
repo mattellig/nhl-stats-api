@@ -1,15 +1,6 @@
-import conferences from "./conferences/conferences";
-import divisions from "./divisions/divisions";
-import franchises from "./franchises/franchises";
-import players from "./players/players";
-import seasons from "./seasons/seasons";
-import teams from "./teams/teams";
-
-export default {
-  ...conferences,
-  ...divisions,
-  ...franchises,
-  ...players,
-  ...seasons,
-  ...teams,
-};
+export * as conferences from "./conferences/conferences";
+export * as divisions from "./divisions/divisions";
+export * as franchises from "./franchises/franchises";
+export * as people from "./people/people";
+export * as seasons from "./seasons/seasons";
+export * as teams from "./teams/teams";

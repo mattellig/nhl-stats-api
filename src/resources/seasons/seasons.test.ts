@@ -1,62 +1,30 @@
-import seasons from "./seasons";
+import { mockSeasons } from "../../../mocks/data";
+import { getSeasonById, getSeasons } from "./seasons";
 
-describe("getSeasons", () => {
-  const { getSeasons } = seasons;
+describe("seasons", () => {
+  describe("getSeasons", () => {
+    it("should resolve to an array of NHLSeasons", async () => {
+      const results = await getSeasons();
 
-  it("should resolve to an array of NHLSeasons", async () => {
-    const results = await getSeasons();
-
-    expect(results).toContainEqual(
-      expect.objectContaining({
-        seasonId: expect.anything(),
-        regularSeasonStartDate: expect.anything(),
-        regularSeasonEndDate: expect.anything(),
-        seasonEndDate: expect.anything(),
-        numberOfGames: expect.anything(),
-        tiesInUse: expect.anything(),
-        olympicsParticipation: expect.anything(),
-        conferencesInUse: expect.anything(),
-        divisionsInUse: expect.anything(),
-        wildCardInUse: expect.anything(),
-      })
-    );
-  });
-
-  it("should resolve to a single NHLSeason when an ID is specified", async () => {
-    const seasonId = "20212022";
-
-    const results = await getSeasons({ id: seasonId });
-
-    expect(results).toEqual({
-      regularSeasonStartDate: "2021-10-12",
-      regularSeasonEndDate: "2022-05-01",
-      seasonEndDate: "2022-06-29",
-      numberOfGames: 82,
-      tiesInUse: false,
-      olympicsParticipation: true,
-      conferencesInUse: true,
-      divisionsInUse: true,
-      wildCardInUse: true,
-      seasonId,
+      expect(results).toEqual(mockSeasons);
     });
   });
 
-  it("should resolve to a single NHLSeason when the current season is requested", async () => {
-    const results = await getSeasons({ id: "current" });
+  describe("getSeasonById", () => {
+    it("should resolve to a single NHLSeason", async () => {
+      const target = mockSeasons[0];
 
-    expect(results).toEqual(
-      expect.objectContaining({
-        seasonId: expect.anything(),
-        regularSeasonStartDate: expect.anything(),
-        regularSeasonEndDate: expect.anything(),
-        seasonEndDate: expect.anything(),
-        numberOfGames: expect.anything(),
-        tiesInUse: expect.anything(),
-        olympicsParticipation: expect.anything(),
-        conferencesInUse: expect.anything(),
-        divisionsInUse: expect.anything(),
-        wildCardInUse: expect.anything(),
-      })
-    );
+      const results = await getSeasonById(target.seasonId);
+
+      expect(results).toEqual(target);
+    });
+
+    it('should retrieve the latest season with an ID of "current"', async () => {
+      const target = mockSeasons[mockSeasons.length - 1];
+
+      const results = await getSeasonById("current");
+
+      expect(results).toEqual(target);
+    });
   });
 });
