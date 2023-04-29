@@ -1,0 +1,35 @@
+[
+  {
+    "id": 8478483,
+    "fullName": "Mitchell Marner",
+    "link": "/api/v1/people/8478483",
+    "firstName": "Mitchell",
+    "lastName": "Marner",
+    "primaryNumber": "16",
+    "birthDate": "1997-05-05",
+    "currentAge": 25,
+    "birthCity": "Markham",
+    "birthStateProvince": "ON",
+    "birthCountry": "CAN",
+    "nationality": "CAN",
+    "height": "6' 0\"",
+    "weight": 181,
+    "active": true,
+    "alternateCaptain": true,
+    "captain": false,
+    "rookie": false,
+    "shootsCatches": "R",
+    "rosterStatus": "Y",
+    "currentTeam": {
+      "id": 10,
+      "name": "Toronto Maple Leafs",
+      "link": "/api/v1/teams/10"
+    },
+    "primaryPosition": {
+      "code": "R",
+      "name": "Right Wing",
+      "type": "Forward",
+      "abbreviation": "RW"
+    }
+  }
+]

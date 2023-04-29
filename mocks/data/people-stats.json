@@ -1,0 +1,415 @@
+[
+  {
+    "type": {
+      "displayName": "byDayOfWeek",
+      "gameType": null
+    },
+    "splits": [
+      {
+        "season": "20222023",
+        "stat": {
+          "timeOnIce": "154:51",
+          "assists": 4,
+          "goals": 2,
+          "pim": 0,
+          "shots": 11,
+          "games": 7,
+          "hits": 5,
+          "powerPlayGoals": 0,
+          "powerPlayPoints": 1,
+          "powerPlayTimeOnIce": "17:24",
+          "evenTimeOnIce": "120:27",
+          "penaltyMinutes": "0",
+          "shotPct": 0.0,
+          "gameWinningGoals": 1,
+          "overTimeGoals": 0,
+          "shortHandedGoals": 0,
+          "shortHandedPoints": 0,
+          "shortHandedTimeOnIce": "17:00",
+          "blocked": 7,
+          "plusMinus": 5,
+          "points": 6,
+          "shifts": 169,
+          "timeOnIcePerGame": "22:07",
+          "evenTimeOnIcePerGame": "17:12",
+          "shortHandedTimeOnIcePerGame": "02:25",
+          "powerPlayTimeOnIcePerGame": "02:29"
+        },
+        "dayOfWeek": 1
+      }
+    ]
+  },
+  {
+    "type": {
+      "displayName": "byMonth",
+      "gameType": null
+    },
+    "splits": [
+      {
+        "season": "20222023",
+        "stat": {
+          "timeOnIce": "297:55",
+          "assists": 13,
+          "goals": 4,
+          "pim": 4,
+          "shots": 30,
+          "games": 14,
+          "hits": 10,
+          "powerPlayGoals": 2,
+          "powerPlayPoints": 9,
+          "powerPlayTimeOnIce": "55:52",
+          "evenTimeOnIce": "200:42",
+          "penaltyMinutes": "4",
+          "shotPct": 0.0,
+          "gameWinningGoals": 2,
+          "overTimeGoals": 1,
+          "shortHandedGoals": 1,
+          "shortHandedPoints": 1,
+          "shortHandedTimeOnIce": "41:21",
+          "blocked": 6,
+          "plusMinus": 6,
+          "points": 17,
+          "shifts": 341,
+          "timeOnIcePerGame": "21:16",
+          "evenTimeOnIcePerGame": "14:20",
+          "shortHandedTimeOnIcePerGame": "02:57",
+          "powerPlayTimeOnIcePerGame": "03:59"
+        },
+        "month": 1
+      }
+    ]
+  },
+  {
+    "type": {
+      "displayName": "goalsByGameSituation",
+      "gameType": null
+    },
+    "splits": [
+      {
+        "season": "20222023",
+        "stat": {
+          "goalsInFirstPeriod": 6,
+          "goalsInSecondPeriod": 13,
+          "goalsInThirdPeriod": 9,
+          "goalsInOvertime": 2,
+          "gameWinningGoals": 4,
+          "emptyNetGoals": 2,
+          "shootOutGoals": 1,
+          "shootOutShots": 3,
+          "goalsTrailingByOne": 8,
+          "goalsTrailingByTwo": 3,
+          "goalsTrailingByThreePlus": 1,
+          "goalsWhenTied": 10,
+          "goalsLeadingByOne": 4,
+          "goalsLeadingByTwo": 2,
+          "goalsLeadingByThreePlus": 2,
+          "penaltyGoals": 0,
+          "penaltyShots": 0
+        }
+      }
+    ]
+  },
+  {
+    "type": {
+      "displayName": "homeAndAway",
+      "gameType": null
+    },
+    "splits": [
+      {
+        "season": "20222023",
+        "stat": {
+          "timeOnIce": "867:02",
+          "assists": 36,
+          "goals": 15,
+          "pim": 18,
+          "shots": 99,
+          "games": 40,
+          "hits": 30,
+          "powerPlayGoals": 6,
+          "powerPlayPoints": 25,
+          "powerPlayTimeOnIce": "158:42",
+          "evenTimeOnIce": "620:50",
+          "penaltyMinutes": "18",
+          "shotPct": 0.0,
+          "gameWinningGoals": 3,
+          "overTimeGoals": 2,
+          "shortHandedGoals": 1,
+          "shortHandedPoints": 2,
+          "shortHandedTimeOnIce": "87:30",
+          "blocked": 22,
+          "plusMinus": 10,
+          "points": 51,
+          "shifts": 967,
+          "timeOnIcePerGame": "21:40",
+          "evenTimeOnIcePerGame": "15:31",
+          "shortHandedTimeOnIcePerGame": "02:11",
+          "powerPlayTimeOnIcePerGame": "03:58"
+        },
+        "isHome": true
+      }
+    ]
+  },
+  {
+    "type": {
+      "displayName": "regularSeasonStatRankings",
+      "gameType": null
+    },
+    "splits": [
+      {
+        "season": "20222023",
+        "stat": {
+          "rankPowerPlayGoals": "43rd",
+          "rankBlockedShots": "302nd",
+          "rankAssists": "5th",
+          "rankShotPct": "94th",
+          "rankGoals": "52nd",
+          "rankHits": "438th",
+          "rankPenaltyMinutes": "346th",
+          "rankShortHandedGoals": "3rd",
+          "rankPlusMinus": "59th",
+          "rankShots": "91st",
+          "rankPoints": "12th",
+          "rankOvertimeGoals": "8th",
+          "rankGamesPlayed": "163rd"
+        }
+      }
+    ]
+  },
+  {
+    "type": {
+      "displayName": "statsSingleSeason",
+      "gameType": {
+        "id": "R",
+        "description": "Regular season",
+        "postseason": false
+      }
+    },
+    "splits": [
+      {
+        "season": "20222023",
+        "stat": {
+          "timeOnIce": "1702:06",
+          "assists": 69,
+          "goals": 30,
+          "pim": 28,
+          "shots": 196,
+          "games": 80,
+          "hits": 53,
+          "powerPlayGoals": 9,
+          "powerPlayPoints": 36,
+          "powerPlayTimeOnIce": "285:59",
+          "evenTimeOnIce": "1233:08",
+          "penaltyMinutes": "28",
+          "faceOffPct": 0.0,
+          "shotPct": 15.3,
+          "gameWinningGoals": 4,
+          "overTimeGoals": 2,
+          "shortHandedGoals": 4,
+          "shortHandedPoints": 5,
+          "shortHandedTimeOnIce": "182:59",
+          "blocked": 45,
+          "plusMinus": 18,
+          "points": 99,
+          "shifts": 1929,
+          "timeOnIcePerGame": "21:16",
+          "evenTimeOnIcePerGame": "15:24",
+          "shortHandedTimeOnIcePerGame": "02:17",
+          "powerPlayTimeOnIcePerGame": "03:34"
+        }
+      }
+    ]
+  },
+  {
+    "type": {
+      "displayName": "vsConference",
+      "gameType": null
+    },
+    "splits": [
+      {
+        "season": "20222023",
+        "stat": {
+          "timeOnIce": "697:29",
+          "assists": 23,
+          "goals": 14,
+          "pim": 14,
+          "shots": 74,
+          "games": 32,
+          "hits": 19,
+          "powerPlayGoals": 3,
+          "powerPlayPoints": 12,
+          "powerPlayTimeOnIce": "132:10",
+          "evenTimeOnIce": "495:57",
+          "penaltyMinutes": "14",
+          "faceOffPct": 0.0,
+          "faceOffWins": 0,
+          "shotPct": 0.0,
+          "gameWinningGoals": 2,
+          "overTimeGoals": 1,
+          "shortHandedGoals": 1,
+          "shortHandedPoints": 1,
+          "shortHandedTimeOnIce": "69:22",
+          "blocked": 19,
+          "plusMinus": 3,
+          "points": 37,
+          "shifts": 774,
+          "timeOnIcePerGame": "21:47",
+          "evenTimeOnIcePerGame": "15:29",
+          "shortHandedTimeOnIcePerGame": "02:10",
+          "powerPlayTimeOnIcePerGame": "04:07"
+        },
+        "opponentConference": {
+          "id": 5,
+          "name": "Western",
+          "link": "/api/v1/conferences/5"
+        }
+      }
+    ]
+  },
+  {
+    "type": {
+      "displayName": "vsDivision",
+      "gameType": null
+    },
+    "splits": [
+      {
+        "season": "20222023",
+        "stat": {
+          "timeOnIce": "352:07",
+          "assists": 7,
+          "goals": 6,
+          "pim": 8,
+          "shots": 29,
+          "games": 16,
+          "hits": 12,
+          "powerPlayGoals": 1,
+          "powerPlayPoints": 3,
+          "powerPlayTimeOnIce": "66:34",
+          "evenTimeOnIce": "245:25",
+          "penaltyMinutes": "8",
+          "faceOffPct": 0.0,
+          "faceOffWins": 0,
+          "shotPct": 0.0,
+          "gameWinningGoals": 1,
+          "overTimeGoals": 0,
+          "shortHandedGoals": 1,
+          "shortHandedPoints": 1,
+          "shortHandedTimeOnIce": "40:08",
+          "blocked": 11,
+          "plusMinus": 2,
+          "points": 13,
+          "shifts": 387,
+          "timeOnIcePerGame": "22:00",
+          "evenTimeOnIcePerGame": "15:20",
+          "shortHandedTimeOnIcePerGame": "02:30",
+          "powerPlayTimeOnIcePerGame": "04:09"
+        },
+        "opponentDivision": {
+          "id": 16,
+          "name": "Central",
+          "link": "/api/v1/divisions/16"
+        },
+        "opponentConference": {
+          "id": 5,
+          "name": "Western",
+          "link": "/api/v1/conferences/5"
+        }
+      }
+    ]
+  },
+  {
+    "type": {
+      "displayName": "vsTeam",
+      "gameType": null
+    },
+    "splits": [
+      {
+        "season": "20222023",
+        "stat": {
+          "timeOnIce": "71:24",
+          "assists": 3,
+          "goals": 1,
+          "pim": 0,
+          "shots": 7,
+          "games": 3,
+          "hits": 2,
+          "powerPlayGoals": 0,
+          "powerPlayPoints": 2,
+          "powerPlayTimeOnIce": "14:13",
+          "evenTimeOnIce": "48:35",
+          "penaltyMinutes": "0",
+          "faceOffWins": 0,
+          "shotPct": 0.1429,
+          "gameWinningGoals": 0,
+          "overTimeGoals": 0,
+          "shortHandedGoals": 1,
+          "shortHandedPoints": 1,
+          "shortHandedTimeOnIce": "08:36",
+          "blocked": 3,
+          "plusMinus": 0,
+          "points": 4,
+          "shifts": 76,
+          "timeOnIcePerGame": "23:48",
+          "evenTimeOnIcePerGame": "16:11",
+          "shortHandedTimeOnIcePerGame": "02:52",
+          "powerPlayTimeOnIcePerGame": "04:44"
+        },
+        "opponent": {
+          "id": 1,
+          "name": "New Jersey Devils",
+          "link": "/api/v1/teams/1"
+        },
+        "opponentDivision": {
+          "id": 18,
+          "name": "Metropolitan",
+          "link": "/api/v1/divisions/18"
+        },
+        "opponentConference": {
+          "id": 6,
+          "name": "Eastern",
+          "link": "/api/v1/conferences/6"
+        }
+      }
+    ]
+  },
+  {
+    "type": {
+      "displayName": "winLoss",
+      "gameType": null
+    },
+    "splits": [
+      {
+        "season": "20222023",
+        "stat": {
+          "timeOnIce": "1015:27",
+          "assists": 47,
+          "goals": 21,
+          "pim": 16,
+          "shots": 122,
+          "games": 49,
+          "hits": 33,
+          "powerPlayGoals": 6,
+          "powerPlayPoints": 23,
+          "powerPlayTimeOnIce": "170:01",
+          "evenTimeOnIce": "732:43",
+          "penaltyMinutes": "16",
+          "shotPct": 0.0,
+          "gameWinningGoals": 4,
+          "overTimeGoals": 2,
+          "shortHandedGoals": 3,
+          "shortHandedPoints": 4,
+          "shortHandedTimeOnIce": "112:43",
+          "blocked": 28,
+          "plusMinus": 37,
+          "points": 68,
+          "shifts": 1161,
+          "timeOnIcePerGame": "20:43",
+          "evenTimeOnIcePerGame": "14:57",
+          "shortHandedTimeOnIcePerGame": "02:18",
+          "powerPlayTimeOnIcePerGame": "03:28"
+        },
+        "isWin": true,
+        "isOT": false
+      }
+    ]
+  }
+]

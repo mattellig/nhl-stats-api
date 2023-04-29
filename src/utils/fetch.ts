@@ -1,10 +1,13 @@
-import { BaseOptions } from "../types";
 import { NHLStatsError } from "./nhl-stats-error";
+
+export interface BaseOptions {
+  signal?: AbortSignal;
+}
 
 const BASE_URL = "https://statsapi.web.nhl.com/api/v1/";
 
 export async function fetchNHLStats<T>(
-  resource: "conferences" | "divisions",
+  resource: "conferences" | "divisions" | "franchises" | "people",
   options: BaseOptions & {
     endpoint?: string;
     id?: number;
@@ -13,7 +16,7 @@ export async function fetchNHLStats<T>(
 ): Promise<T> {
   const { endpoint, id, signal, ...params } = options;
 
-  let url = `${BASE_URL}/${resource}`;
+  let url = `${BASE_URL}${resource}`;
   if (id) {
     // e.g. /people/:id
     url = `${url}/${id}`;

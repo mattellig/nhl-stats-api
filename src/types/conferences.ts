@@ -1,7 +1,6 @@
-export interface NHLConference {
-  id: number;
-  name: string;
-  link: string;
+import type { NHLBaseConferenceDivisionOrTeam } from "./common";
+
+export interface NHLConference extends NHLBaseConferenceDivisionOrTeam {
   abbreviation: string;
   shortName: string;
   active: boolean;

@@ -1,5 +1,11 @@
 import { rest, type RequestHandler } from "msw";
-import { mockConferences, mockDivisions } from "./data";
+import {
+  mockConferences,
+  mockDivisions,
+  mockFranchises,
+  mockPlayerStats,
+  mockPlayers,
+} from "./data";
 
 const notFoundError = {
   messageNumber: 10,
@@ -23,7 +29,7 @@ export const handlers: RequestHandler[] = [
         return res(ctx.status(404), ctx.json(notFoundError));
       }
 
-      return res(ctx.json({ conferences: conference }));
+      return res(ctx.json({ conferences: [conference] }));
     }
   ),
   rest.get(
@@ -42,7 +48,56 @@ export const handlers: RequestHandler[] = [
         return res(ctx.status(404), ctx.json(notFoundError));
       }
 
-      return res(ctx.json({ divisions: division }));
+      return res(ctx.json({ divisions: [division] }));
+    }
+  ),
+  rest.get(
+    "https://statsapi.web.nhl.com/api/v1/franchises",
+    (_req, res, ctx) => {
+      return res(ctx.json({ franchises: mockFranchises }));
+    }
+  ),
+  rest.get(
+    "https://statsapi.web.nhl.com/api/v1/franchises/:id",
+    (req, res, ctx) => {
+      const { id } = req.params;
+
+      const franchise = mockFranchises.find(
+        (f) => f.franchiseId === Number(id)
+      );
+
+      if (!franchise) {
+        return res(ctx.status(404), ctx.json(notFoundError));
+      }
+
+      return res(ctx.json({ franchises: [franchise] }));
+    }
+  ),
+  rest.get(
+    "https://statsapi.web.nhl.com/api/v1/people/:id",
+    (req, res, ctx) => {
+      const { id } = req.params;
+
+      const player = mockPlayers.find((p) => p.id === Number(id));
+      if (!player) {
+        return res(ctx.status(404), ctx.json(notFoundError));
+      }
+
+      return res(ctx.json({ people: [player] }));
+    }
+  ),
+  rest.get(
+    "https://statsapi.web.nhl.com/api/v1/people/:id/stats",
+    (req, res, ctx) => {
+      // we normally would filter by id as well but we're only keeping sample
+      // stat data for a single player
+      const stats = req.url.searchParams.get("stats");
+
+      const playerStats = mockPlayerStats.filter(
+        (mps) => mps.type.displayName === stats
+      );
+
+      return res(ctx.json({ stats: playerStats }));
     }
   ),
 ];
