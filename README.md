@@ -1,18 +1,13 @@
 # nhl-stats-api
 
-A Promise-based wrapper for the NHL stats API.
+A Promise-based client for the NHL stats API.
 
-*NOTE*: This project contains a selected subset of all available NHL stats API endpoints. More may be added in the future.
+## Features
 
-## Table of contents
-
- - [Installation](#installation)
- - [Usage](#usage)
- - [API](#api)
- - [Finding a player's ID](#finding-a-players-id)
- - [Build from source](#build-from-source)
- - [Acknowledgements](#acknowledgements)
- - [License](#license)
+- ⏳ **Promise-based requests** with [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+- 🚫 **Request cancellation** via [AbortSignal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)
+- ✅ **TypeScript types**
+- 🪶 **Lightweight** (_less than 3kb_)
 
 ## Installation
 
@@ -28,309 +23,169 @@ Using yarn:
 $ yarn add nhl-stats-api
 ```
 
-## Usage
-
-*NOTE*: To get TypeScript typings (for Intellisense/autocomplete) while using CommonJS imports with `require()`, use the following approach:
-
-```js
-const nhlStatsApi = require('nhl-stats-api').default;
-
-// nhlStatsApi.<method> will now provide autocomplete and parameter typings
-```
+## Getting started
 
 Basic usage example:
 
 ```js
-const nhlStatsApi = require('nhl-stats-api').default;
+import { nhlStatsApi } from "nhl-stats-api";
 
-nhlStatsApi
-    .getTeams()
-    .then((teams) => {
-        // ...
-    });
+nhlStatsApi.getTeams().then((teams) => {
+  // ...
+});
 
-nhlStatsApi
-    .getPlayer({ id: 8478483 })
-    .then((player) => {
-        // ...
-    });
+nhlStatsApi.getPlayer({ id: 8478483 }).then((player) => {
+  // ...
+});
 ```
 
-## API
-
- - [getConferences](#getconferences)
- - [getDivisions](#getdivisions)
- - [getFranchises](#getfranchises)
- - [getPlayer](#getplayer)
- - [getPlayerStats](#getplayerstats)
- - [getSeasons](#getseasons)
- - [getTeams](#getteams)
- - [getTeamRoster](#getteamroster)
- - [getTeamStats](#getteamstats)
-
-------------
-
-### getConferences
-
-By default, returns a list of all active conferences. You can specify an ID to get a single conference instead.
+...or, with `async`/`await`:
 
 ```js
-nhlStatsApi.getConferences(); // returns conferences array
-nhlStatsApi.getConferences({ id: 6 }); // returns single conference
+import { nhlStatsApi } from "nhl-stats-api";
+
+const teams = await nhlStatsApi.getTeams();
+const player = await nhlStatsApi.getPlayer(8478483);
 ```
 
-------------
+### Canceling requests
 
-### getDivisions
-
-By default, returns a list of all active divisions. You can specify an ID to get a single division instead.
+All endpoints support request cancellation by passing an `AbortSignal` to the `options` parameter (the last parameter for each endpoint).
 
 ```js
-nhlStatsApi.getDivisions(); // returns divisions array
-nhlStatsApi.getDivisions({ id: 17 }); // returns single division
+const controller = new AbortController();
+const signal = controller.signal;
+
+nhlStatsApi.getPlayer(8478483, { signal });
+
+controller.abort();
 ```
 
-#### Options
+## Endpoints
 
- - `expand`: Array of values specifying additional information to include in the results.
+- [Conferences](#conferences)
+- [Divisions](#divisions)
+- [Franchises](#franchises)
+- [Players](#players)
+- [Seasons](#seasons)
+- [Teams](#teams)
 
- ```js
- nhlStatsApi.getDivisions({ expand: ['division.conference'] });
- ```
- 
- Accepted `expand` values for `getDivisions`:
- 
-  - `division.conference`
+### Conferences
 
-------------
+#### `getConferences`
 
-### getFranchises
-
-By default, returns a list of all franchises. You can specify an ID to get a single franchise instead.
+Returns an array of all active conferences. For inactive conferences, use `getConferenceById`.
 
 ```js
-nhlStatsApi.getFranchises(); // returns franchises array
-nhlStatsApi.getFranchises({ id: 1 }); // returns single franchise
+nhlStatsApi.getConferences();
 ```
 
-------------
+#### `getConferenceById`
 
-### getPlayer
+Returns a single conference. Requires the ID of the conference. This can be used to retrieve inactive conferences (e.g. ID `7` for the World Cup of Hockey).
+
+```js
+nhlStatsApi.getConferenceById(6);
+```
+
+### Divisions
+
+#### `getDivisions`
+
+Returns an array of all active divisions. For inactive divisions, use `getDivisionById`.
+
+```js
+nhlStatsApi.getDivisions();
+```
+
+#### `getDivisionById`
+
+Returns a single division. Requires the ID of the division. This can be used to retrieve inactive divisions (e.g. ID `13` for the Patrick division).
+
+```js
+nhlStatsApi.getDivisionById(17);
+```
+
+### Franchises
+
+#### `getFranchises`
+
+Returns an array of all franchises, including inactive ones.
+
+```js
+nhlStatsApi.getFranchises();
+```
+
+#### `getFranchiseById`
+
+Returns a single franchise. Requires the ID of the franchise.
+
+```js
+nhlStatsApi.getFranchiseById(5);
+```
+
+### Players
+
+#### `getPlayerById`
 
 Returns a single player. [Requires the ID of the player](#finding-a-players-id).
 
 ```js
-nhlStatsApi.getPlayer({ id: 8478483 });
+nhlStatsApi.getPlayer(8478483);
 ```
 
-#### Options
+#### `getPlayerStats`
 
- - `expand`: Array of values specifying additional information to include in the results.
- 
- ```js
- nhlStatsApi.getPlayer({ id: 8478483, expand: ['person.names', 'person.social'] });
- ```
- 
- Accepted `expand` values for `getPlayer`:
- 
-  - `person.currentTeam`
-  - `person.names`
-  - `person.social`
-
-------------
-
-### getPlayerStats
-
-Returns stats or stat rankings for a player. [Requires the ID of the player](#finding-a-players-id) and the desired stats type.
+Returns an array of stats or stat rankings for a player. [Requires the ID of the player](#finding-a-players-id) and the desired stats type.
 
 ```js
-nhlStatsApi.getPlayerStats({ id: 8478483, stats: 'statsSingleSeason' });
+nhlStatsApi.getPlayerStats(8478483, "statsSingleSeason");
 ```
 
-#### Options
+##### Stats types
 
- - `stats`: Specifies which type of stats will be returned. Accepted `stats` values:
+Below is the list of valid type values. Most types have both regular season and playoff-only versions.
 
-  - `byMonth`
-  - `byMonthPlayoffs`
-  - `byDayOfWeek`
-  - `byDayOfWeekPlayoffs`
-  - `careerRegularSeason`
-  - `careerPlayoffs`
-  - `gameLog`
-  - `playoffGameLog`
-  - `goalsByGameSituation`
-  - `goalsByGameSituationPlayoffs`
-  - `homeAndAway`
-  - `homeAndAwayPlayoffs`
-  - `onPaceRegularSeason`
-  - `regularSeasonStatRankings`
-  - `playoffStatRankings`
-  - `statsSingleSeason`
-  - `statsSingleSeasonPlayoffs`
-  - `vsTeam`
-  - `vsTeamPlayoffs`
-  - `vsDivision`
-  - `vsDivisionPlayoffs`
-  - `vsConference`
-  - `vsConferencePlayoffs`
-  - `winLoss`
-  - `winLossPlayoffs`
-  - `yearByYear`
-  - `yearByYearRank`
-  - `yearByYearPlayoffs`
-  - `yearByYearPlayoffsRank`
+- `"byDayOfWeek"` - Stats split by day of the week.
+- `"byDayOfWeekPlayoffs"`
+- `"byMonth"` - Stats split by month.
+- `"byMonthPlayoffs"`
+- `"careerRegularSeason"` - Total career statistics.
+- `"careerPlayoffs"`
+- `"gameLog"` - Stats split by individual game.
+- `"playoffGameLog"`
+- `"goalsByGameSituation"` - Number of goals scored by the player, by game situation. For goalies, this appears to be the number of goals scored _against_ them.
+- `"goalsByGameSituationPlayoffs"`
+- `"homeAndAway"` - Stats split between home and away games.
+- `"homeAndAwayPlayoffs"`
+- `"regularSeasonStatRankings"` - Where a player ranks vs. the rest of the league in each stat.
+- `"playoffStatRankings"`
+- `"statsSingleSeason"` - Single season statistics.
+- `"statsSingleSeasonPlayoffs"`
+- `"vsConference"` - Conference stats split.
+- `"vsConferencePlayoffs"`
+- `"vsDivision"` - Division stats split.
+- `"vsDivisionPlayoffs"`
+- `"vsTeam"` - Stats split by opposing team.
+- `"vsTeamPlayoffs"`
+- `"winLoss"` - Stats split by W/L/OT.
+- `"winLossPlayoffs"`
+- `"yearByYear"` - Stats split by year. Can include data from leagues besides the NHL (e.g. GTHL, OHL, etc.).
+- `"yearByYearPlayoffs"`
+- `"yearByYearRank"` - Player ranks in each stat, split by year. Unlike year-by-year stats, this only includes NHL data.
+- `"yearByYearPlayoffsRank"`
 
+##### Filtering by season
 
- - `season`: Specifies which NHL season the stats come from. If not set, this will always be the current season of play. Note that this does not affect all stat types (e.g. `yearByYear`, etc.).
- 
- ```js
- nhlStatsApi.getPlayerStats({ 
-     id: 8478483, 
-     stats: 'statsSingleSeason', 
-     season: '20172018',
- });
- ```
-
-------------
-
-### getSeasons
-
-By default, returns a list of all NHL seasons. You can specify an ID to get a single season instead. Alternatively, you can use "current" as the ID to get information on the current season of play.
+By default, stats will always be for the current season. To request a different season, use the `season` prop of the `options` parameter. Note that this does not affect some stat types (e.g. career, year-by-year, etc.).
 
 ```js
-nhlStatsApi.getSeasons(); // returns seasons array
-nhlStatsApi.getSeasons({ id: '19921993' }); // returns single season
-nhlStatsApi.getSeasons({ id: 'current' }); // returns single season
+nhlStatsApi.getPlayerStats(8478483, "statsSingleSeason", {
+  season: "20172018",
+});
 ```
 
-------------
-
-### getTeams
-
-By default, returns a list of all active teams. You can specify an ID to get a single team instead.
-
-```js
-nhlStatsApi.getTeams(); // returns teams array
-nhlStatsApi.getTeams({ id: 10 }); // returns single team
-```
-
-#### Options
-
- - `expand`: Array of values specifying additional information to include in the results.
- 
- ```js
- nhlStatsApi.getTeams({ expand: ['team.playoffs', 'team.record'] });
- ```
- 
- Accepted `expand` values for `getTeams`:
- 
-  - `roster.person`
-  - `person.names`
-  - `person.social`
-  - `team.conference`
-  - `team.division`
-  - `team.franchise`
-  - `team.playoffs`
-  - `team.record`
-  - `team.roster` (see also: [getTeamRoster](#getteamroster))
-  - `team.social`
-  - `team.stats` (see also: [getTeamStats](#getteamstats))
-
-
- - `rosterType`: If incuding the team's roster (via `expand`), specifies which type of roster the results should include.
-
- ```js
- nhlStatsApi.getTeams({ expand: ['team.roster'], rosterType: 'fullRoster' });
- ```
- 
- Accepted `rosterType` values:
- 
-  - `active` (default)
-  - `fullRoster`
-
-
-- `season`: Specifies which NHL season the team data should come from. If not set, this will always be the current season of play. Affects things like record, roster, stats, etc. (all included via `expand`).
- 
- ```js
- nhlStatsApi.getTeams({ expand: ['team.record'], season: '19661967' });
- ```
-
-------------
-
-### getTeamRoster
-
-By default, returns the active roster for a team. Requires the ID of the team.
-
-```js
-nhlStatsApi.getTeamRoster({ id: 10 });
-```
-
-#### Options
-
-- `expand`: Array of values specifying additional information to include in the results.
- 
- ```js
- nhlStatsApi.getTeamRoster({ id: 10, expand: ['roster.person'] });
- ```
- 
- Accepted `expand` values for `getTeamRoster`:
- 
-  - `roster.person`
-  - `person.names`
-  - `person.social`
-
-
-- `rosterType`: Specifies which type of roster to return.
- 
- ```js
- nhlStatsApi.getTeamRoster({ id: 10, rosterType: 'fullRoster' });
- ```
- 
- Accepted `rosterType` values: 
-
-  - `active` (default)
-  - `fullRoster`
-
-
-- `season`: Specifies which NHL season the roster should come from. If not set, this will always be the current season of play.
- 
- ```js
- nhlStatsApi.getTeamRoster({ id: 10, season: '19661967' });
- ```
-
-------------
-
-### getTeamStats
-
-Returns the regular season stats and stat rankings for a team. Requires the ID of the team.
-
-```js
-nhlStatsApi.getTeamStats({ id: 10 });
-```
-
-#### Options
-
-- `expand`: Array of values specifying additional information to include in the results.
- 
- ```js
- nhlStatsApi.getTeamStats({ id: 10, expand: ['stats.team'] });
- ```
- 
- Accepted `expand` values for `getTeamStats`:
- 
-  - `stats.team`
- 
- 
-- `season`: Specifies which NHL season the stats should come from. If not set, this will always be the current season of play.
- 
- ```js
- nhlStatsApi.getTeamStats({ id: 10, season: '19661967' });
- ```
-
-------------
-
-### Finding a player's ID
+##### Finding a player's ID
 
 You can find the ID of a player a couple of different ways. Using the API, you can [get the roster of the team](#getteamroster) the player plays (or played) for and get their ID from that.
 
@@ -340,26 +195,89 @@ Alternatively, you can find a player's ID via their [NHL.com](https://www.nhl.co
 https://www.nhl.com/player/mike-bossy-8445611
 ```
 
-So, his player ID is **8445611**.
+So, his player ID is **`8445611`**.
 
-## Build from source
+### Seasons
 
-```bash
-$ git clone https://github.com/mattellig/nhl-stats-api.git
-$ cd nhl-stats-api
-$ yarn
+#### `getSeasons`
+
+Returns an array of all NHL seasons, past and present.
+
+```js
+nhlStatsApi.getSeasons();
 ```
 
-After installing dependencies, you can build with `yarn build`.
+#### `getSeasonById`
+
+Returns a single season. Requires the ID of the season. Alternatively, `"current"` can be used as the ID to get information on the most recent season of play.
+
+```js
+nhlStatsApi.getSeason("20172018");
+nhlStatsApi.getSeason("current");
+```
+
+### Teams
+
+#### `getTeams`
+
+Returns a list of all active teams. For inactive teams, use `getTeamById`.
+
+```js
+nhlStatsApi.getTeams();
+```
+
+#### `getTeamById`
+
+Returns a single team. Requires the ID of the team. This can be used to retrieve inactive teams (e.g. ID `11` for the Atlanta Thrashers).
+
+```js
+nhlStatsApi.getTeamById(10);
+```
+
+#### `getTeamRoster`
+
+Returns an array containing the specified team's roster. Requires the ID of the team.
+
+```js
+nhlStatsApi.getTeamRoster(10);
+```
+
+##### Full team roster
+
+By default, the return value only includes players on the team's active NHL roster. To request a team's full roster, including inactive, injured, and minor league players, use the `fullRoster` prop of the `options` parameter.
+
+```js
+nhlStatsApi.getTeamRoster(10, { fullRoster: true });
+```
+
+##### Filtering by season
+
+To request a different season's roster, use the `season` prop of the `options` parameter.
+
+```js
+nhlStatsApi.getTeamRoster(10, { season: "20172018" });
+```
+
+#### `getTeamStats`
+
+Returns the regular season stats and stat rankings for a team. Requires the ID of the team.
+
+```js
+nhlStatsApi.getTeamStats(10);
+```
+
+#### Filtering by season
+
+By default, stats will always be for the current season. To request a different season, use the `season` prop of the `options` parameter.
+
+```js
+nhlStatsApi.getTeamStats(10, { season: "20172018" });
+```
 
 ## Acknowledgements
 
 [Drew Hynes](https://pure-defect.com/) for his incredible work [documenting the NHL API](https://gitlab.com/dword4/nhlapi).
 
-## License
+---
 
-[MIT](LICENSE)
-
-------------
-
-Disclaimer: NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. © NHL 2022. All Rights Reserved.
+Disclaimer: NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. © NHL 2023. All Rights Reserved.

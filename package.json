@@ -1,7 +1,7 @@
 {
   "name": "nhl-stats-api",
   "version": "1.1.1",
-  "description": "A strongly-typed client for the NHL Stats API.",
+  "description": "A Promise-based client for the NHL stats API.",
   "license": "MIT",
   "repository": "https://github.com/mattellig/nhl-stats-api.git",
   "author": "Matt Ellig",

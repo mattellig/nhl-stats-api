@@ -25,18 +25,37 @@ export interface NHLPlayer {
   primaryPosition: NHLPosition;
 }
 
-// TODO: investigate + add onPaceRegularSeason type
+// TODO: Add support + types for
+// - onPaceRegularSeason
 export type NHLPlayerStatsType =
   | "byDayOfWeek"
+  | "byDayOfWeekPlayoffs"
   | "byMonth"
+  | "byMonthPlayoffs"
+  | "careerPlayoffs"
+  | "careerRegularSeason"
+  | "gameLog"
   | "goalsByGameSituation"
+  | "goalsByGameSituationPlayoffs"
   | "homeAndAway"
+  | "homeAndAwayPlayoffs"
+  | "playoffGameLog"
+  | "playoffStatRankings"
   | "regularSeasonStatRankings"
   | "statsSingleSeason"
+  | "statsSingleSeasonPlayoffs"
   | "vsConference"
+  | "vsConferencePlayoffs"
   | "vsDivision"
+  | "vsDivisionPlayoffs"
   | "vsTeam"
-  | "winLoss";
+  | "vsTeamPlayoffs"
+  | "winLoss"
+  | "winLossPlayoffs"
+  | "yearByYear"
+  | "yearByYearPlayoffs"
+  | "yearByYearPlayoffsRank"
+  | "yearByYearRank";
 
 export interface NHLSkaterStats {
   timeOnIce: string;
@@ -159,11 +178,31 @@ export type NHLPlayerStatsByMonth = PlayerStats<
   PlayerStatSplits & { month: number }
 >;
 
+export type NHLPlayerCareerStats = PlayerStats<PlayerStatSplits>;
+
+export type NHLPlayerStatsGameLog = PlayerStats<
+  PlayerStatSplits & {
+    team: NHLBaseConferenceDivisionOrTeam;
+    opponent: NHLBaseConferenceDivisionOrTeam;
+    date: string;
+    isHome: boolean;
+    isWin: boolean;
+    isOT: boolean;
+    game: {
+      gamePk: number;
+      link: string;
+      content: {
+        link: string;
+      };
+    };
+  }
+>;
+
 export type NHLPlayerHomeAndAwayStats = PlayerStats<
   PlayerStatSplits & { isHome: boolean }
 >;
 
-export interface NHLPlayerStatsSingleSeason {
+export interface NHLPlayerSingleSeasonStats {
   type: {
     displayName: string;
     gameType: {
@@ -223,6 +262,14 @@ export type NHLPlayerGoalsByGameSituation = PlayerStats<{
     penaltyShots: number;
   };
 }>;
+
+export type NHLPlayerYearByYearStats = PlayerStats<
+  PlayerStatSplits & {
+    team: NHLBaseConferenceDivisionOrTeam;
+    league: NHLBaseConferenceDivisionOrTeam;
+    sequenceNumber: number;
+  }
+>;
 
 export interface NHLSkaterStatRankings {
   rankPowerPlayGoals: string;
@@ -284,7 +331,7 @@ export interface NHLGoalieStatRankings {
   rankGamesPlayed?: never;
 }
 
-export type NHLPlayerRegularSeasonStatRankings = PlayerStats<{
+export type NHLPlayerStatRankings = PlayerStats<{
   season: string;
   stat: NHLSkaterStatRankings | NHLGoalieStatRankings;
 }>;
