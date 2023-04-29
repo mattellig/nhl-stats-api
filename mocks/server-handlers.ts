@@ -5,6 +5,10 @@ import {
   mockFranchises,
   mockPlayerStats,
   mockPlayers,
+  mockSeasons,
+  mockTeamRoster,
+  mockTeamStats,
+  mockTeams,
 } from "./data";
 
 const notFoundError = {
@@ -98,6 +102,56 @@ export const handlers: RequestHandler[] = [
       );
 
       return res(ctx.json({ stats: playerStats }));
+    }
+  ),
+  rest.get("https://statsapi.web.nhl.com/api/v1/seasons", (_req, res, ctx) => {
+    return res(ctx.json({ seasons: mockSeasons }));
+  }),
+  rest.get(
+    "https://statsapi.web.nhl.com/api/v1/seasons/:id",
+    (req, res, ctx) => {
+      const { id } = req.params;
+
+      let season;
+      if (id === "current") {
+        season = mockSeasons[mockSeasons.length - 1];
+      } else {
+        season = mockSeasons.find((s) => s.seasonId === id);
+        if (!season) {
+          return res(ctx.status(404), ctx.json(notFoundError));
+        }
+      }
+
+      return res(ctx.json({ seasons: [season] }));
+    }
+  ),
+  rest.get("https://statsapi.web.nhl.com/api/v1/teams", (_req, res, ctx) => {
+    return res(ctx.json({ teams: mockTeams }));
+  }),
+  rest.get("https://statsapi.web.nhl.com/api/v1/teams/:id", (req, res, ctx) => {
+    const { id } = req.params;
+
+    const team = mockTeams.find((t) => t.id === Number(id));
+    if (!team) {
+      return res(ctx.status(404), ctx.json(notFoundError));
+    }
+
+    return res(ctx.json({ teams: [team] }));
+  }),
+  rest.get(
+    "https://statsapi.web.nhl.com/api/v1/teams/:id/roster",
+    (_req, res, ctx) => {
+      // we normally would filter by id but we're only keeping sample
+      // roster data for a single team
+      return res(ctx.json({ roster: mockTeamRoster }));
+    }
+  ),
+  rest.get(
+    "https://statsapi.web.nhl.com/api/v1/teams/:id/stats",
+    (_req, res, ctx) => {
+      // we normally would filter by id but we're only keeping sample
+      // stats data for a single team
+      return res(ctx.json({ stats: mockTeamStats }));
     }
   ),
 ];

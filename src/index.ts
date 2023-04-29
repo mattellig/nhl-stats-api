@@ -1,4 +1,11 @@
-import { conferences, divisions, franchises, people } from "./resources";
+import {
+  conferences,
+  divisions,
+  franchises,
+  people,
+  seasons,
+  teams,
+} from "./resources";
 
 export type {
   NHLBaseConferenceDivisionOrTeam,
@@ -19,8 +26,15 @@ export type {
   NHLPlayerStatsVsDivision,
   NHLPlayerStatsVsTeam,
   NHLPlayerWinLossStats,
+  NHLPosition,
+  NHLRosterPlayer,
+  NHLSeason,
   NHLSkaterStatRankings,
   NHLSkaterStats,
+  NHLTeam,
+  NHLTeamRegularSeasonStatRankings,
+  NHLTeamStats,
+  NHLTeamStatsSingleSeason,
 } from "./types";
 export { NHLStatsError } from "./utils";
 
@@ -29,4 +43,6 @@ export const nhlStatsApi = {
   ...divisions,
   ...franchises,
   ...people,
+  ...seasons,
+  ...teams,
 };

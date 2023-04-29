@@ -12,16 +12,16 @@ import type {
   NHLPlayerStatsVsTeam,
   NHLPlayerWinLossStats,
 } from "../../types";
-import { BaseOptions, fetchNHLStats } from "../../utils";
+import { fetchNHLStats, type BaseOptions } from "../../utils";
 
 export function getPlayerById(
   id: number,
-  options: BaseOptions = {}
+  options?: BaseOptions
 ): Promise<NHLPlayer> {
   return fetchNHLStats("people", { ...options, id });
 }
 
-interface NHLPlayerStatsReturnType {
+export interface NHLPlayerStatsReturnType {
   byDayOfWeek: NHLPlayerStatsByDayOfWeek;
   byMonth: NHLPlayerStatsByMonth;
   goalsByGameSituation: NHLPlayerGoalsByGameSituation;
@@ -37,7 +37,7 @@ interface NHLPlayerStatsReturnType {
 export function getPlayerStats<TType extends NHLPlayerStatsType>(
   id: number,
   type: TType,
-  options: BaseOptions & { season?: string } = {}
+  options?: BaseOptions & { season?: string }
 ): Promise<NHLPlayerStatsReturnType[TType][]> {
   return fetchNHLStats("people", {
     ...options,

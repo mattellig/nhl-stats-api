@@ -1,0 +1,62 @@
+[
+  {
+    "seasonId": "20182019",
+    "regularSeasonStartDate": "2018-10-03",
+    "regularSeasonEndDate": "2019-04-06",
+    "seasonEndDate": "2019-06-12",
+    "numberOfGames": 82,
+    "tiesInUse": false,
+    "olympicsParticipation": false,
+    "conferencesInUse": true,
+    "divisionsInUse": true,
+    "wildCardInUse": true
+  },
+  {
+    "seasonId": "20192020",
+    "regularSeasonStartDate": "2019-10-02",
+    "regularSeasonEndDate": "2020-03-11",
+    "seasonEndDate": "2020-09-28",
+    "numberOfGames": 82,
+    "tiesInUse": false,
+    "olympicsParticipation": false,
+    "conferencesInUse": true,
+    "divisionsInUse": true,
+    "wildCardInUse": true
+  },
+  {
+    "seasonId": "20202021",
+    "regularSeasonStartDate": "2021-01-13",
+    "regularSeasonEndDate": "2021-05-19",
+    "seasonEndDate": "2021-07-07",
+    "numberOfGames": 56,
+    "tiesInUse": false,
+    "olympicsParticipation": false,
+    "conferencesInUse": false,
+    "divisionsInUse": true,
+    "wildCardInUse": true
+  },
+  {
+    "seasonId": "20212022",
+    "regularSeasonStartDate": "2021-10-12",
+    "regularSeasonEndDate": "2022-05-01",
+    "seasonEndDate": "2022-06-29",
+    "numberOfGames": 82,
+    "tiesInUse": false,
+    "olympicsParticipation": true,
+    "conferencesInUse": true,
+    "divisionsInUse": true,
+    "wildCardInUse": true
+  },
+  {
+    "seasonId": "20222023",
+    "regularSeasonStartDate": "2022-10-07",
+    "regularSeasonEndDate": "2023-04-14",
+    "seasonEndDate": "2023-06-30",
+    "numberOfGames": 82,
+    "tiesInUse": false,
+    "olympicsParticipation": false,
+    "conferencesInUse": true,
+    "divisionsInUse": true,
+    "wildCardInUse": true
+  }
+]

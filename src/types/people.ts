@@ -1,4 +1,4 @@
-import type { NHLBaseConferenceDivisionOrTeam } from "./common";
+import type { NHLBaseConferenceDivisionOrTeam, NHLPosition } from "./common";
 
 export interface NHLPlayer {
   id: number;
@@ -22,12 +22,7 @@ export interface NHLPlayer {
   shootsCatches: string;
   rosterStatus: string;
   currentTeam: NHLBaseConferenceDivisionOrTeam;
-  primaryPosition: {
-    code: string;
-    name: string;
-    type: string;
-    abbreviation: string;
-  };
+  primaryPosition: NHLPosition;
 }
 
 // TODO: investigate + add onPaceRegularSeason type

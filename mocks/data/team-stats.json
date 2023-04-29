@@ -1,0 +1,96 @@
+[
+  {
+    "type": {
+      "displayName": "statsSingleSeason",
+      "gameType": {
+        "id": "R",
+        "description": "Regular season",
+        "postseason": false
+      }
+    },
+    "splits": [
+      {
+        "stat": {
+          "gamesPlayed": 82,
+          "wins": 50,
+          "losses": 21,
+          "ot": 11,
+          "pts": 111,
+          "ptPctg": "67.7",
+          "goalsPerGame": 3.39,
+          "goalsAgainstPerGame": 2.683,
+          "evGGARatio": 1.2958,
+          "powerPlayPercentage": "26.0",
+          "powerPlayGoals": 64.0,
+          "powerPlayGoalsAgainst": 45.0,
+          "powerPlayOpportunities": 246.0,
+          "penaltyKillPercentage": "81.8",
+          "shotsPerGame": 32.0488,
+          "shotsAllowed": 29.5122,
+          "winScoreFirst": 0.717,
+          "winOppScoreFirst": 0.472,
+          "winLeadFirstPer": 0.774,
+          "winLeadSecondPer": 0.841,
+          "winOutshootOpp": 0.625,
+          "winOutshotByOpp": 0.576,
+          "faceOffsTaken": 4415.0,
+          "faceOffsWon": 2344.0,
+          "faceOffsLost": 2071.0,
+          "faceOffWinPercentage": "53.1",
+          "shootingPctg": 10.6,
+          "savePctg": 0.909
+        },
+        "team": {
+          "id": 10,
+          "name": "Toronto Maple Leafs",
+          "link": "/api/v1/teams/10"
+        }
+      }
+    ]
+  },
+  {
+    "type": {
+      "displayName": "regularSeasonStatRankings",
+      "gameType": null
+    },
+    "splits": [
+      {
+        "stat": {
+          "wins": "6th",
+          "losses": "3rd",
+          "ot": "8th",
+          "pts": "4th",
+          "ptPctg": "4th",
+          "goalsPerGame": "9th",
+          "goalsAgainstPerGame": "7th",
+          "evGGARatio": "3rd",
+          "powerPlayPercentage": "2nd",
+          "powerPlayGoals": "5th",
+          "powerPlayGoalsAgainst": "11th",
+          "powerPlayOpportunities": "18th",
+          "penaltyKillOpportunities": "16th",
+          "penaltyKillPercentage": "12th",
+          "shotsPerGame": "12th",
+          "shotsAllowed": "7th",
+          "winScoreFirst": "6th",
+          "winOppScoreFirst": "4th",
+          "winLeadFirstPer": "16th",
+          "winLeadSecondPer": "20th",
+          "winOutshootOpp": "7th",
+          "winOutshotByOpp": "7th",
+          "faceOffsTaken": "32nd",
+          "faceOffsWon": "16th",
+          "faceOffsLost": "1st",
+          "faceOffWinPercentage": "4th",
+          "savePctRank": "10th",
+          "shootingPctRank": "9th"
+        },
+        "team": {
+          "id": 10,
+          "name": "Toronto Maple Leafs",
+          "link": "/api/v1/teams/10"
+        }
+      }
+    ]
+  }
+]

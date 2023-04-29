@@ -7,11 +7,17 @@ export interface BaseOptions {
 const BASE_URL = "https://statsapi.web.nhl.com/api/v1/";
 
 export async function fetchNHLStats<T>(
-  resource: "conferences" | "divisions" | "franchises" | "people",
+  resource:
+    | "conferences"
+    | "divisions"
+    | "franchises"
+    | "people"
+    | "seasons"
+    | "teams",
   options: BaseOptions & {
     endpoint?: string;
-    id?: number;
-    [key: string]: any;
+    id?: string | number;
+    [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
   } = {}
 ): Promise<T> {
   const { endpoint, id, signal, ...params } = options;

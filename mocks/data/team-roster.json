@@ -1,0 +1,72 @@
+[
+  {
+    "person": {
+      "id": 8478047,
+      "fullName": "Michael Bunting",
+      "link": "/api/v1/people/8478047"
+    },
+    "jerseyNumber": "58",
+    "position": {
+      "code": "L",
+      "name": "Left Wing",
+      "type": "Forward",
+      "abbreviation": "LW"
+    }
+  },
+  {
+    "person": {
+      "id": 8478483,
+      "fullName": "Mitchell Marner",
+      "link": "/api/v1/people/8478483"
+    },
+    "jerseyNumber": "16",
+    "position": {
+      "code": "R",
+      "name": "Right Wing",
+      "type": "Forward",
+      "abbreviation": "RW"
+    }
+  },
+  {
+    "person": {
+      "id": 8478492,
+      "fullName": "Ilya Samsonov",
+      "link": "/api/v1/people/8478492"
+    },
+    "jerseyNumber": "35",
+    "position": {
+      "code": "G",
+      "name": "Goalie",
+      "type": "Goalie",
+      "abbreviation": "G"
+    }
+  },
+  {
+    "person": {
+      "id": 8478569,
+      "fullName": "Noel Acciari",
+      "link": "/api/v1/people/8478569"
+    },
+    "jerseyNumber": "52",
+    "position": {
+      "code": "C",
+      "name": "Center",
+      "type": "Forward",
+      "abbreviation": "C"
+    }
+  },
+  {
+    "person": {
+      "id": 8479318,
+      "fullName": "Auston Matthews",
+      "link": "/api/v1/people/8479318"
+    },
+    "jerseyNumber": "34",
+    "position": {
+      "code": "C",
+      "name": "Center",
+      "type": "Forward",
+      "abbreviation": "C"
+    }
+  }
+]

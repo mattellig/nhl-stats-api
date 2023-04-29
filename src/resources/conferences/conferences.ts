@@ -1,5 +1,5 @@
 import type { NHLConference } from "../../types";
-import { BaseOptions, fetchNHLStats } from "../../utils";
+import { fetchNHLStats, type BaseOptions } from "../../utils";
 
 export function getConferences(
   options?: BaseOptions

@@ -1,0 +1,122 @@
+[
+  {
+    "id": 10,
+    "name": "Toronto Maple Leafs",
+    "link": "/api/v1/teams/10",
+    "venue": {
+      "name": "Scotiabank Arena",
+      "link": "/api/v1/venues/null",
+      "city": "Toronto",
+      "timeZone": {
+        "id": "America/Toronto",
+        "offset": -4,
+        "tz": "EDT"
+      }
+    },
+    "abbreviation": "TOR",
+    "teamName": "Maple Leafs",
+    "locationName": "Toronto",
+    "firstYearOfPlay": "1917",
+    "division": {
+      "id": 17,
+      "name": "Atlantic",
+      "nameShort": "ATL",
+      "link": "/api/v1/divisions/17",
+      "abbreviation": "A"
+    },
+    "conference": {
+      "id": 6,
+      "name": "Eastern",
+      "link": "/api/v1/conferences/6"
+    },
+    "franchise": {
+      "franchiseId": 5,
+      "teamName": "Maple Leafs",
+      "link": "/api/v1/franchises/5"
+    },
+    "shortName": "Toronto",
+    "officialSiteUrl": "http://www.mapleleafs.com/",
+    "franchiseId": 5,
+    "active": true
+  },
+  {
+    "id": 1,
+    "name": "New Jersey Devils",
+    "link": "/api/v1/teams/1",
+    "venue": {
+      "name": "Prudential Center",
+      "link": "/api/v1/venues/null",
+      "city": "Newark",
+      "timeZone": {
+        "id": "America/New_York",
+        "offset": -4,
+        "tz": "EDT"
+      }
+    },
+    "abbreviation": "NJD",
+    "teamName": "Devils",
+    "locationName": "New Jersey",
+    "firstYearOfPlay": "1982",
+    "division": {
+      "id": 18,
+      "name": "Metropolitan",
+      "nameShort": "Metro",
+      "link": "/api/v1/divisions/18",
+      "abbreviation": "M"
+    },
+    "conference": {
+      "id": 6,
+      "name": "Eastern",
+      "link": "/api/v1/conferences/6"
+    },
+    "franchise": {
+      "franchiseId": 23,
+      "teamName": "Devils",
+      "link": "/api/v1/franchises/23"
+    },
+    "shortName": "New Jersey",
+    "officialSiteUrl": "http://www.newjerseydevils.com/",
+    "franchiseId": 23,
+    "active": true
+  },
+  {
+    "id": 2,
+    "name": "New York Islanders",
+    "link": "/api/v1/teams/2",
+    "venue": {
+      "name": "UBS Arena",
+      "link": "/api/v1/venues/null",
+      "city": "Elmont",
+      "timeZone": {
+        "id": "America/New_York",
+        "offset": -4,
+        "tz": "EDT"
+      }
+    },
+    "abbreviation": "NYI",
+    "teamName": "Islanders",
+    "locationName": "New York",
+    "firstYearOfPlay": "1972",
+    "division": {
+      "id": 18,
+      "name": "Metropolitan",
+      "nameShort": "Metro",
+      "link": "/api/v1/divisions/18",
+      "abbreviation": "M"
+    },
+    "conference": {
+      "id": 6,
+      "name": "Eastern",
+      "link": "/api/v1/conferences/6"
+    },
+    "franchise": {
+      "franchiseId": 22,
+      "teamName": "Islanders",
+      "link": "/api/v1/franchises/22"
+    },
+    "shortName": "NY Islanders",
+    "officialSiteUrl": "http://www.newyorkislanders.com/",
+    "franchiseId": 22,
+    "active": true
+  }
+]
